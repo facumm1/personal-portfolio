@@ -1,7 +1,13 @@
 import {Container, Divider} from '@mui/material';
 
 import {AppTheme} from './theme/AppTheme';
-import {AboutPage, HomePage, ServicesPage} from './pages';
+import {
+  AboutPage,
+  HomePage,
+  ServicesPage,
+  ProjectsPage,
+  ContactPage,
+} from './pages';
 
 function PortfolioApp() {
   return (
@@ -18,6 +24,14 @@ function PortfolioApp() {
         <Divider sx={{borderColor: 'info.main'}} />
 
         <AboutPage />
+
+        <Divider sx={{borderColor: 'info.main'}} />
+
+        <ProjectsPage />
+
+        <Divider sx={{borderColor: 'info.main'}} />
+
+        <ContactPage />
       </Container>
     </AppTheme>
   );
