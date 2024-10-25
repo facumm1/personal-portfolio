@@ -1,137 +1,94 @@
 import React from 'react';
-import {Box, Button, TextField, Typography} from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import {Box, Button, Divider, Typography} from '@mui/material';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
-const lightGray = '#E2E8F0';
+import {ContactForm} from '../components/ContactForm';
+import {toastify} from '../utils/toastify';
 
-export const ContactPage: React.FC = () => {
+const email = 'facundomamani120@gmail.com';
+
+type DOMComponent = React.ForwardRefExoticComponent<
+  React.RefAttributes<HTMLDivElement>
+>;
+
+export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(email)
+      .then(() => {
+        toastify('Copied to clipboard');
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+  };
+
   return (
-    <Box sx={styles.box}>
-      <Typography sx={styles.mainTitle}>Let's get in touch!</Typography>
+    <Box ref={ref}>
+      <Divider sx={{borderColor: 'info.main'}} />
 
-      <Typography
-        sx={{color: 'info.main', fontSize: '18px', textAlign: 'center'}}>
-        It could be... For a job proposal? Or maybe for a freelance project, who
-        knows? 🤔
-      </Typography>
+      <Box sx={styles.box}>
+        <Typography sx={styles.mainTitle}>Let's get in touch!</Typography>
 
-      {/* Form */}
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          my: 3,
-        }}>
-        <TextField
-          sx={styles.textField}
-          InputProps={{
-            style: {color: '#FFF', fontSize: '18px'},
-            disableUnderline: false,
-          }}
-          InputLabelProps={{
-            style: {color: lightGray, fontWeight: '800', fontSize: '18px'},
-          }}
-          id="name"
-          label="Your name"
-          variant="standard"
-        />
-        <TextField
-          sx={styles.textField}
-          InputProps={{
-            style: {color: '#FFF', fontSize: '18px'},
-            disableUnderline: false,
-          }}
-          InputLabelProps={{
-            style: {color: lightGray, fontWeight: '800', fontSize: '18px'},
-          }}
-          id="email"
-          label="Your email"
-          variant="standard"
-        />
-        <TextField
-          sx={styles.textField}
-          InputProps={{
-            style: {color: '#FFF', fontSize: '18px'},
-            disableUnderline: false,
-          }}
-          InputLabelProps={{
-            style: {color: lightGray, fontWeight: '800', fontSize: '18px'},
-          }}
-          id="message"
-          label="Your message"
-          variant="standard"
-        />
-
-        <Button
-          variant="outlined"
-          color="secondary"
-          sx={{borderRadius: '10px', mt: 5}}>
-          <Typography sx={{textTransform: 'none', fontSize: '20px', px: 1}}>
-            Send message
-          </Typography>
-          <SendIcon sx={{ml: 1}} />
-        </Button>
-      </Box>
-
-      <Typography
-        sx={{
-          color: 'info.main',
-          textAlign: 'center',
-          fontSize: '20px',
-          my: 5,
-        }}>
-        or do you prefer a simpler
-        <br /> way to contact me?
-      </Typography>
-
-      {/* Email to clipboard */}
-      <Box display="flex" sx={{justifyContent: 'center', alignItems: 'center'}}>
-        <Typography color="secondary" sx={{fontSize: '20px'}}>
-          Copy my email
+        <Typography
+          sx={{color: 'info.main', fontSize: '18px', textAlign: 'center'}}>
+          It could be... For a job proposal? Or maybe for a freelance project,
+          who knows? 🤔
         </Typography>
 
-        <Box
+        {/* Form */}
+        <ContactForm />
+
+        <Typography
           sx={{
-            bgcolor: 'secondary.main',
-            px: 1,
-            py: 0.5,
-            ml: 1.5,
-            borderRadius: '10px',
-            display: 'flex',
-            justifyContent: 'center',
+            color: 'info.main',
+            textAlign: 'center',
+            fontSize: '20px',
+            my: 5,
           }}>
-          <EmailOutlinedIcon color="primary" sx={{fontSize: '40px'}} />
+          or do you prefer a simpler
+          <br /> way to contact me?
+        </Typography>
+
+        {/* Email to clipboard */}
+        <Box
+          display="flex"
+          sx={{justifyContent: 'center', alignItems: 'center'}}>
+          <Typography color="secondary" sx={{fontSize: '20px'}}>
+            Copy my email
+          </Typography>
+
+          <Button
+            variant="contained"
+            sx={styles.emailButton}
+            onClick={handleCopy}>
+            <EmailOutlinedIcon color="primary" sx={{fontSize: '40px'}} />
+          </Button>
         </Box>
       </Box>
     </Box>
   );
-};
+});
 
 const styles = {
   mainTitle: {color: 'info.main', textAlign: 'center', fontSize: '30px', mb: 2},
   box: {
     minHeight: '100vh',
     py: 4,
-    mx: 5,
+    px: 5,
     display: 'flex',
     flexDirection: 'column',
   },
-  textField: {
-    width: '90%',
-    my: 1,
-    '& .MuiInput-underline:before': {
-      borderBottomColor: lightGray,
-    },
-    '& .MuiInput-underline:hover:before': {
-      borderBottomColor: lightGray,
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: lightGray,
-    },
-    '& .Mui-focused': {
-      color: lightGray,
+  emailButton: {
+    bgcolor: 'secondary.main',
+    px: 0,
+    py: 0.5,
+    ml: 1.5,
+    borderRadius: '10px',
+    display: 'flex',
+    justifyContent: 'center',
+    '&:hover': {
+      bgcolor: 'secondary.main',
     },
   },
 };

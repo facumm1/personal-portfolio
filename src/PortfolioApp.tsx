@@ -1,5 +1,7 @@
+import 'react-toastify/dist/ReactToastify.min.css';
 import {useRef} from 'react';
-import {Container, Divider} from '@mui/material';
+import {ToastContainer} from 'react-toastify';
+import {Container} from '@mui/material';
 
 import {AppTheme} from './theme/AppTheme';
 import {useToggle} from './hooks';
@@ -11,6 +13,7 @@ import {
   ProjectsPage,
   ContactPage,
 } from './pages';
+import {Footer} from './components/Footer';
 
 function PortfolioApp() {
   const {t: toggleMenu, s: handleMenu} = useToggle(false);
@@ -34,35 +37,29 @@ function PortfolioApp() {
 
   return (
     <AppTheme>
-      <Container
-        disableGutters
-        sx={{bgcolor: 'primary.main', minHeight: '100vh'}}>
+      <Container disableGutters sx={{bgcolor: 'primary.main'}}>
         <Menu
           toggleMenu={toggleMenu}
           handleMenu={handleMenu}
           scrollToSection={scrollToSection}
         />
 
-        <Divider ref={sections['Home']} />
-        <HomePage handleMenu={handleMenu} />
+        <HomePage handleMenu={handleMenu} ref={sections['Home']} />
 
-        <Divider
-          sx={{borderColor: 'info.main'}}
+        <ServicesPage
+          sectionToScroll={sections['Projects']}
           ref={sections['My services']}
         />
-        <ServicesPage />
 
-        <Divider sx={{borderColor: 'info.main'}} ref={sections['About me']} />
-        <AboutPage />
+        <AboutPage ref={sections['About me']} />
 
-        <Divider sx={{borderColor: 'info.main'}} ref={sections['Projects']} />
-        <ProjectsPage />
+        <ProjectsPage ref={sections['Projects']} />
 
-        <Divider
-          sx={{borderColor: 'info.main'}}
-          ref={sections['Get in touch']}
-        />
-        <ContactPage />
+        <ContactPage ref={sections['Get in touch']} />
+
+        <Footer />
+
+        <ToastContainer />
       </Container>
     </AppTheme>
   );

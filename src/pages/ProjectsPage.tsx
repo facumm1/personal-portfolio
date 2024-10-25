@@ -1,111 +1,93 @@
 import React from 'react';
-import {Box, Typography} from '@mui/material';
+import {Box, Divider, Typography} from '@mui/material';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+
+import {projects} from '../utils/projects';
 
 const lightGreen = '#59D9C120';
 
-export const ProjectsPage: React.FC = () => {
+type DOMComponent = React.ForwardRefExoticComponent<
+  React.RefAttributes<HTMLDivElement>
+>;
+
+export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
   return (
-    <Box sx={styles.box}>
-      <Typography sx={styles.mainTitle}>Projects</Typography>
+    <Box ref={ref}>
+      <Divider sx={{borderColor: 'info.main'}} />
 
-      {/* 2A mobile app */}
-      <Box sx={{mb: 3}}>
-        <Typography sx={{color: 'info.main', fontSize: '22px', mb: 1}}>
-          Dos Arroyos Cambios
-        </Typography>
+      {/* Content */}
+      <Box sx={styles.box}>
+        <Typography sx={styles.mainTitle}>Projects</Typography>
 
-        <Typography sx={{color: 'info.main', fontSize: '18px'}}>
-          React Native CLI app integrated with API REST. It has users
-          authentication and push notifications for agency announcements or
-          user’s order statuses. it will be on iOS & Android stores soon!
-        </Typography>
+        {projects.map(project => (
+          <Box sx={styles.card}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Typography
+                sx={{color: 'info.main', fontSize: '22px', mb: 1}}
+                className="cardTitle">
+                {project.title}
+              </Typography>
 
-        <Box sx={{mt: 1}}>
-          <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-            <Typography sx={{...styles.skill, my: 1}}>React Native</Typography>
-            <Typography sx={styles.skill}>Typescript</Typography>
-            <Typography sx={styles.skill}>CSS</Typography>
+              <ArrowOutwardIcon
+                className="cardTitle"
+                sx={{color: 'info.main', mb: 1}}
+              />
+            </Box>
+
+            <Typography sx={{color: 'info.main', fontSize: '18px'}}>
+              {project.description}
+            </Typography>
+
+            <Box sx={{mt: 1}}>
+              <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
+                {project.skills.map((skill, index) => (
+                  <Typography
+                    sx={{...styles.skill, my: index === 1 ? 1 : 'auto'}}>
+                    {skill}
+                  </Typography>
+                ))}
+              </Box>
+            </Box>
           </Box>
-        </Box>
-      </Box>
-
-      {/* Brewery app */}
-      <Box sx={{mb: 3}}>
-        <Typography sx={{color: 'info.main', fontSize: '22px', mb: 1}}>
-          Brewery Mobile App
-        </Typography>
-
-        <Typography sx={{color: 'info.main', fontSize: '18px'}}>
-          React Native CLI app that consumes Open Brewery DB API for retrieving
-          breweries information. It displays a list of thumbnails which you can
-          press and get more details.
-        </Typography>
-
-        <Box sx={{mt: 1}}>
-          <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-            <Typography sx={{...styles.skill, my: 1}}>React Native</Typography>
-            <Typography sx={styles.skill}>Redux</Typography>
-            <Typography sx={styles.skill}>Typescript</Typography>
-            <Typography sx={styles.skill}>CSS</Typography>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* Artworks app */}
-      <Box sx={{mb: 3}}>
-        <Typography sx={{color: 'info.main', fontSize: '22px', mb: 1}}>
-          Artwork Mobile App
-        </Typography>
-
-        <Typography sx={{color: 'info.main', fontSize: '18px'}}>
-          React Native CLI app that consumes Art Institute of Chicago API for
-          retrieving artworks information. It displays a list of thumbnails with
-          an artwork pic which you can press and get more details.
-        </Typography>
-
-        <Box sx={{mt: 1}}>
-          <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-            <Typography sx={{...styles.skill, my: 1}}>React Native</Typography>
-            <Typography sx={styles.skill}>Redux</Typography>
-            <Typography sx={styles.skill}>Typescript</Typography>
-            <Typography sx={styles.skill}>CSS</Typography>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* News app */}
-      <Box sx={{mb: 3}}>
-        <Typography sx={{color: 'info.main', fontSize: '22px', mb: 1}}>
-          News Mobile App
-        </Typography>
-
-        <Typography sx={{color: 'info.main', fontSize: '18px'}}>
-          React Native CLI app that consumes newsAPI for retrieving news. It
-          displays a list of thumbnails which you can press and get more
-          details.
-        </Typography>
-
-        <Box sx={{mt: 1}}>
-          <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-            <Typography sx={{...styles.skill, my: 1}}>React Native</Typography>
-            <Typography sx={styles.skill}>Redux</Typography>
-            <Typography sx={styles.skill}>Typescript</Typography>
-            <Typography sx={styles.skill}>CSS</Typography>
-          </Box>
-        </Box>
+        ))}
       </Box>
     </Box>
   );
-};
+});
 
 const styles = {
   mainTitle: {color: 'info.main', textAlign: 'center', fontSize: '30px', mb: 4},
   box: {
     minHeight: '100vh',
     py: 4,
-    mx: 5,
+    mx: 2,
     display: 'flex',
     flexDirection: 'column',
+  },
+  card: {
+    cursor: 'pointer',
+    px: 3,
+    py: 2,
+    mb: 3,
+    '&:hover': {
+      bgcolor: '#1a2640',
+      color: 'secondary.main',
+      transition: '0.5s',
+    },
+    '&:hover .cardTitle': {
+      color: 'secondary.main',
+      transition: '0.5s',
+    },
+  },
+  cardTitle: {
+    color: 'info.main',
+    fontSize: '22px',
+    my: 1,
   },
   skill: {
     borderRadius: '15px',
