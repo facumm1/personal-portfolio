@@ -1,8 +1,9 @@
 import React from 'react';
-import {Box, Divider, Typography} from '@mui/material';
+import {Box, Divider, Typography, useMediaQuery} from '@mui/material';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 import {projects} from '../utils/projects';
+import {useTheme} from '@emotion/react';
 
 const lightGreen = '#59D9C120';
 
@@ -11,16 +12,22 @@ type DOMComponent = React.ForwardRefExoticComponent<
 >;
 
 export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+
   return (
     <Box ref={ref}>
-      <Divider sx={{borderColor: 'info.main'}} />
+      <Divider sx={{borderColor: 'rgba(226, 233, 240, 0.25)'}} />
 
       {/* Content */}
       <Box sx={styles.box}>
-        <Typography sx={styles.mainTitle}>Projects</Typography>
+        <Typography
+          sx={{...styles.mainTitle, fontSize: isDesktop ? '38px' : '30px'}}>
+          Projects
+        </Typography>
 
         {projects.map(project => (
-          <Box sx={styles.card}>
+          <Box sx={styles.card} key={project.title}>
             <Box
               sx={{
                 display: 'flex',
@@ -47,6 +54,7 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
               <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
                 {project.skills.map((skill, index) => (
                   <Typography
+                    key={skill}
                     sx={{...styles.skill, my: index === 1 ? 1 : 'auto'}}>
                     {skill}
                   </Typography>
@@ -61,7 +69,7 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
 });
 
 const styles = {
-  mainTitle: {color: 'info.main', textAlign: 'center', fontSize: '30px', mb: 4},
+  mainTitle: {color: 'info.main', textAlign: 'center', mb: 4},
   box: {
     minHeight: '100vh',
     py: 4,

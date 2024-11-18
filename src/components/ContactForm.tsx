@@ -134,7 +134,14 @@ export const ContactForm: React.FC = () => {
       <Button
         variant="outlined"
         color="secondary"
-        sx={{borderRadius: '10px', mt: 5}}
+        sx={{
+          borderRadius: '10px',
+          mt: 5,
+          '&:hover': {
+            bgcolor: 'secondary.main',
+            color: 'primary.main',
+          },
+        }}
         onClick={handleSubmit(onSubmit)}>
         <Typography sx={{textTransform: 'none', fontSize: '20px', px: 1}}>
           Send message

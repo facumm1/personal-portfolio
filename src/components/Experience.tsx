@@ -1,20 +1,25 @@
-import {Box, Typography} from '@mui/material';
 import React from 'react';
-import {experiences} from '../utils/experiences';
+import {useTheme} from '@emotion/react';
+import {Box, Typography, useMediaQuery} from '@mui/material';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import {experiences} from '../utils/experiences';
 
 const lightGreen = '#59D9C120';
 const lightGray = '#E2E8F080';
 
 export const Experience: React.FC = () => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+
   return (
-    <Box sx={styles.expBox}>
+    <Box sx={{...styles.expBox, minHeight: isDesktop ? 'none' : '100vh'}}>
       <Typography sx={{color: lightGray, fontSize: '32px', mx: 5}}>
         Experience
       </Typography>
 
       {experiences.map(exp => (
         <Box
+          key={exp.jobName}
           sx={styles.expCard}
           onClick={() => window.open(exp.website, '_blank')}>
           <Typography sx={{color: lightGray, fontSize: '14px'}}>
@@ -48,6 +53,7 @@ export const Experience: React.FC = () => {
             <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
               {exp.skills.map((skill, index) => (
                 <Typography
+                  key={skill}
                   sx={{...styles.skill, my: index === 1 ? 1 : 'auto'}}>
                   {skill}
                 </Typography>
@@ -62,7 +68,6 @@ export const Experience: React.FC = () => {
 
 const styles = {
   expBox: {
-    minHeight: '100vh',
     py: 4,
     display: 'flex',
     flexDirection: 'column',

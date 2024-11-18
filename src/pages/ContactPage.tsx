@@ -1,9 +1,10 @@
 import React from 'react';
-import {Box, Button, Divider, Typography} from '@mui/material';
+import {Box, Button, Divider, Typography, useMediaQuery} from '@mui/material';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
 import {ContactForm} from '../components/ContactForm';
 import {toastify} from '../utils/toastify';
+import {useTheme} from '@emotion/react';
 
 const email = 'facundomamani120@gmail.com';
 
@@ -12,6 +13,9 @@ type DOMComponent = React.ForwardRefExoticComponent<
 >;
 
 export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+
   const handleCopy = () => {
     navigator.clipboard
       .writeText(email)
@@ -25,10 +29,13 @@ export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
 
   return (
     <Box ref={ref}>
-      <Divider sx={{borderColor: 'info.main'}} />
+      <Divider sx={{borderColor: 'rgba(226, 233, 240, 0.25)'}} />
 
       <Box sx={styles.box}>
-        <Typography sx={styles.mainTitle}>Let's get in touch!</Typography>
+        <Typography
+          sx={{...styles.mainTitle, fontSize: isDesktop ? '38px' : '30px'}}>
+          Let's get in touch!
+        </Typography>
 
         <Typography
           sx={{color: 'info.main', fontSize: '18px', textAlign: 'center'}}>
@@ -62,7 +69,7 @@ export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
             variant="contained"
             sx={styles.emailButton}
             onClick={handleCopy}>
-            <EmailOutlinedIcon color="primary" sx={{fontSize: '40px'}} />
+            <EmailOutlinedIcon sx={{fontSize: '40px'}} />
           </Button>
         </Box>
       </Box>
@@ -71,7 +78,7 @@ export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
 });
 
 const styles = {
-  mainTitle: {color: 'info.main', textAlign: 'center', fontSize: '30px', mb: 2},
+  mainTitle: {color: 'info.main', textAlign: 'center', mb: 2},
   box: {
     minHeight: '100vh',
     py: 4,
@@ -81,6 +88,7 @@ const styles = {
   },
   emailButton: {
     bgcolor: 'secondary.main',
+    color: 'primary.main',
     px: 0,
     py: 0.5,
     ml: 1.5,
@@ -88,7 +96,8 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     '&:hover': {
-      bgcolor: 'secondary.main',
+      bgcolor: 'primary.main',
+      color: 'secondary.main'
     },
   },
 };

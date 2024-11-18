@@ -12,7 +12,7 @@ type DOMComponent = React.ForwardRefExoticComponent<
 export const AboutPage: DOMComponent = React.forwardRef((_, ref) => {
   return (
     <Box ref={ref}>
-      <Divider sx={{borderColor: 'info.main'}} />
+      <Divider sx={{borderColor: 'rgba(226, 233, 240, 0.25)'}} />
 
       <About />
 

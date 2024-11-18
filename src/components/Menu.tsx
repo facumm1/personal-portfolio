@@ -8,6 +8,7 @@ import {
   Drawer,
   Divider,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 
 import List from '@mui/material/List';
@@ -20,6 +21,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import fiverLogo from '../assets/fiverr_blue.svg';
 import distantAvatar from '../assets/avatar.svg';
+import {useTheme} from '@emotion/react';
 
 type Props = {
   toggleMenu: boolean;
@@ -32,21 +34,31 @@ export const Menu: React.FC<Props> = ({
   handleMenu,
   scrollToSection,
 }) => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+
   return (
-    <Box sx={{bgcolor: 'secondary.main'}}>
-      <Drawer open={toggleMenu} onClose={() => handleMenu(false)} anchor="top">
+    <Box sx={{bgcolor: 'secondary.main', width: '100%'}}>
+      <Drawer
+        open={toggleMenu}
+        onClose={() => handleMenu(false)}
+        anchor={isDesktop ? 'left' : 'top'}>
         <Box
           sx={{
             width: '100%',
-            height: '100vh',
+            px: 3,
+            height: isDesktop ? '100vh' : '100vh',
             bgcolor: 'secondary.main',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
           }}
           role="presentation">
           {/* Header */}
           <Box
             sx={{
               my: 2,
-              mx: 4,
+              /* mx: 4, */
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -54,7 +66,7 @@ export const Menu: React.FC<Props> = ({
             <Avatar
               alt="distant_avatar"
               src={distantAvatar}
-              sx={{ml: 1, width: '65px', height: '65px'}}
+              sx={{/* ml: 1, */ width: '65px', height: '65px'}}
             />
 
             <Button onClick={() => handleMenu(false)}>
@@ -66,26 +78,30 @@ export const Menu: React.FC<Props> = ({
 
           {/* Buttons */}
           <List sx={{my: 4}}>
-            {[
-              'Home',
-              'My services',
-              'About me',
-              'Projects',
-              'Get in touch',
-            ].map(text => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton onClick={() => scrollToSection(text)}>
-                  <ListItemText
-                    primaryTypographyProps={{pl: 3, fontSize: '24px'}}
-                    primary={text}
-                    sx={{color: 'primary.main', fontSize: '32px'}}
-                  />
-                </ListItemButton>
-              </ListItem>
-            ))}
+            {['Home', 'About me', 'Projects', 'Get in touch'].map(text => {
+              const isHomeSection = text === 'Home';
+              const responsiveHome = !isDesktop ? 'Home' : 'Services';
+
+              const section = isHomeSection ? responsiveHome : text;
+
+              return (
+                <ListItem key={text} disablePadding>
+                  <ListItemButton onClick={() => scrollToSection(section)}>
+                    <ListItemText
+                      primaryTypographyProps={{
+                        pl: 1,
+                        fontSize: isDesktop ? '28px' : '24px',
+                      }}
+                      primary={text}
+                      sx={{color: 'primary.main', fontSize: '32px'}}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
           </List>
 
-          <Box sx={{ml: 5, my: 4}}>
+          <Box sx={{/* ml: 5, */ my: 4}}>
             <Typography
               sx={{
                 color: 'primary.main',
@@ -109,7 +125,7 @@ export const Menu: React.FC<Props> = ({
               alignItems: 'center',
               display: 'flex',
               justifyContent: 'flex-start',
-              ml: 4,
+              /* ml: 4, */
               my: 3,
             }}>
             <Link href="https://github.com/facumm1" target="_blank">

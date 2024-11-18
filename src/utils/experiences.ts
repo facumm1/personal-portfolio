@@ -1,26 +1,26 @@
 export const experiences = [
   {
     datePeriod: 'March 2024 - Present',
+    jobName: 'Lix Software',
+    role: 'Lua & Frontend developer - Fiverr agency',
+    description: `I craft in-game UI interfaces for the FiveM platform (GTA V online)
+          using vanilla JavaScript, jQuery, and React.js. I also work with Lua
+          scripts to retrieve player and server information and display it in my
+          UIs.`,
+    skills: ['Javascript', 'JQuery', 'React.js', 'Lua', 'CSS'],
+    website: 'https://lix.software',
+  },
+  {
+    datePeriod: 'March 2024 - August 2024',
     jobName: 'Dos Arroyos Cambios',
     role: 'Frontend developer - Freelance project',
-    description: `Currently developing software for Dos Arroyos Cambios, a currency
+    description: `I have developed software for Dos Arroyos Cambios, a currency
     exchange agency. In this project, I’m using React Native for building
     a mobile app where customers can buy or sell foreign currencies such
     as US dollar, euros, guaraníes, etc. On the other hand, I created a
     React.js web app that manages customers’ currency orders.`,
     skills: ['React Native', 'React.js', 'Typescript', 'Material UI', 'Figma'],
     website: 'https://www.dosarroyoscambios.com.ar',
-  },
-  {
-    datePeriod: 'March 2024 - May 2024',
-    jobName: 'Lix Software',
-    role: 'Lua & Frontend developer - Fiverr agency',
-    description: `I built in-game UI interfaces for the FiveM platform (GTA V online)
-          using Vue.js, jQuery, and vanilla JavaScript. I also worked with Lua
-          scripts to retrieve player and server information and display it in my
-          UIs.`,
-    skills: ['Javascript', 'Vue.js', 'JQuery', 'Lua', 'CSS'],
-    website: 'https://lix.software',
   },
   {
     datePeriod: 'July 2022 - June 2023',
