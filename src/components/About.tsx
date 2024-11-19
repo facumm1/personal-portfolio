@@ -7,7 +7,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import distantPhoto from '../assets/distant.svg';
 
 const link =
-  'https://drive.google.com/file/d/1zWVTlKaJ2BzC8NUbOz_Y5gmilOG62tT8/view?usp=sharing';
+  'https://drive.google.com/file/d/1hQdWQUGIqkb7gVMVpGcgpG4q_Ld2vnHN/view?usp=sharing';
 
 export const About: React.FC = () => {
   const theme = useTheme();

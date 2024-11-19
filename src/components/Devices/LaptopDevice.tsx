@@ -3,9 +3,9 @@ import {DeviceFrameset} from 'react-device-frameset';
 import {Box} from '@mui/material';
 
 import arroyosWeb from '../../assets/2a-web.png';
+
 import hud from '../../assets/hud.png';
 import inventory from '../../assets/inventory.png';
-
 import mobileScreen from '../../assets/2a_screen.png';
 
 const laptopApps = [arroyosWeb, inventory, hud];
