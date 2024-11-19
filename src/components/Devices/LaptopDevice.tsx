@@ -1,18 +1,22 @@
 import React from 'react';
 import {DeviceFrameset} from 'react-device-frameset';
-import {Box} from '@mui/material';
+import {Box, useMediaQuery} from '@mui/material';
 
 import arroyosWeb from '../../assets/2a-web.png';
 
 import hud from '../../assets/hud.png';
 import inventory from '../../assets/inventory.png';
 import mobileScreen from '../../assets/2a_screen.png';
+import {useTheme} from '@emotion/react';
 
 const laptopApps = [arroyosWeb, inventory, hud];
 
 export const LaptopDevice: React.FC = () => {
   const [imageIndex, setImageIndex] = React.useState<number>(0);
   const [triggerFade, setTriggerFade] = React.useState<boolean>(true);
+
+  const theme = useTheme();
+  const isXL = useMediaQuery(theme.breakpoints.up('xl'));
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -42,7 +46,7 @@ export const LaptopDevice: React.FC = () => {
           transform: 'scale(0.9)',
           position: 'absolute',
           top: '-22.5%',
-          right: '-25%',
+          right: isXL ? '0%' : '-25%',
           display: 'flex',
           justifyContent: 'center',
         }}>
@@ -66,8 +70,8 @@ export const LaptopDevice: React.FC = () => {
         style={{
           transform: 'scale(0.7)',
           position: 'absolute',
-          top: '-20%',
-          right: '-35%',
+          top: isXL ? '-50%' : '-20%',
+          right: isXL ? '-20%' : '-35%',
         }}>
         <DeviceFrameset device="iPhone X" color="gold">
           <Box
