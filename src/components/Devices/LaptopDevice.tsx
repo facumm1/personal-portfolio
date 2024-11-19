@@ -19,7 +19,7 @@ export const LaptopDevice: React.FC = () => {
       setTriggerFade(false);
 
       setTimeout(() => {
-        setImageIndex(prevIndex => (prevIndex + 1) % laptopApps.length); // Cambia la imagen
+        setImageIndex(prevIndex => (prevIndex + 1) % laptopApps.length);
         setTriggerFade(true);
       }, 250);
     }, 3000);

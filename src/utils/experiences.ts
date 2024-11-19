@@ -20,7 +20,7 @@ export const experiences = [
     as US dollar, euros, guaraníes, etc. On the other hand, I created a
     React.js web app that manages customers’ currency orders.`,
     skills: ['React Native', 'React.js', 'Typescript', 'Material UI', 'Figma'],
-    website: 'https://www.dosarroyoscambios.com.ar',
+    website: 'https://www.youtube.com/playlist?list=PL6ICIrJ2y_2vVxn0bUrCvo6XDmWJV0UWZ',
   },
   {
     datePeriod: 'July 2022 - June 2023',

@@ -27,7 +27,10 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
         </Typography>
 
         {projects.map(project => (
-          <Box sx={styles.card} key={project.title}>
+          <Box
+            sx={styles.card}
+            key={project.title}
+            onClick={() => window.open(project.link)}>
             <Box
               sx={{
                 display: 'flex',
@@ -46,9 +49,29 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
               />
             </Box>
 
-            <Typography sx={{color: 'info.main', fontSize: '18px'}}>
-              {project.description}
-            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: isDesktop ? 'row' : 'column',
+                alignItems: 'center',
+              }}>
+              <img
+                src={project.thumbnail}
+                alt="thumbnail"
+                style={{
+                  borderRadius: '5px',
+                  margin: '20px 0',
+                  width: isDesktop ? '25%' : '100%',
+                  height: '35%',
+                  marginRight: '15px',
+                  objectFit: 'cover',
+                }}
+              />
+
+              <Typography sx={{color: 'info.main', fontSize: '18px'}}>
+                {project.description}
+              </Typography>
+            </Box>
 
             <Box sx={{mt: 1}}>
               <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
