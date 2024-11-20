@@ -5,26 +5,34 @@ import {LaptopDevice, MobileDevice} from './Devices';
 import {Header} from './Header';
 import {ReactTyped} from 'react-typed';
 
-const subtitles = [`Hi, I'm Facundo Mamani...`, 'A frontend developer...'];
+const subtitles = [
+  `Hi, I'm Facundo Mamani...`,
+  'A frontend developer...',
+];
+
+const subtitlesMobile = [
+  `Hi, I'm Facundo </br> Mamani...`,
+  'A frontend </br> developer...',
+];
 
 export const Titles: React.FC<{handleMenu: (state: boolean) => void}> = ({
   handleMenu,
 }) => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
     <Box
       sx={{
-        width: isDesktop ? '50%' : '100%',
-        position: isDesktop ? 'fixed' : 'relative',
+        width: isLaptop ? '50%' : '100%',
+        position: isLaptop ? 'fixed' : 'relative',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
         left: 0,
       }}>
-      {isDesktop && (
+      {isLaptop && (
         <Box sx={{alignSelf: 'flex-start'}}>
           <Header handleMenu={handleMenu} />
         </Box>
@@ -32,10 +40,10 @@ export const Titles: React.FC<{handleMenu: (state: boolean) => void}> = ({
 
       <Typography
         sx={{
-          mt: isDesktop ? 1 : 3,
+          mt: isLaptop ? 1 : 3,
           color: 'secondary.main',
           fontFamily: 'typography.fontFamily',
-          fontSize: isDesktop ? '28px' : '22px',
+          fontSize: isLaptop ? '28px' : '22px',
           textAlign: 'center',
         }}>
         Welcome to my portfolio! 👋
@@ -48,14 +56,15 @@ export const Titles: React.FC<{handleMenu: (state: boolean) => void}> = ({
           fontSize: '38px',
           textAlign: 'center',
           fontWeight: '800',
+          height: isLaptop ? 'auto' : '100px',
         }}
         loop
-        strings={subtitles}
+        strings={isLaptop ? subtitles : subtitlesMobile}
         typeSpeed={120}
       />
 
       {/* Device frame */}
-      {isDesktop ? <LaptopDevice /> : <MobileDevice />}
+      {isLaptop ? <LaptopDevice /> : <MobileDevice />}
     </Box>
   );
 };
