@@ -5,8 +5,8 @@ export const Footer: React.FC = () => {
   return (
     <Box>
       <Divider sx={{borderColor: 'rgba(226, 233, 240, 0.25)'}} />
-      <Typography sx={{color: '#E2E8F0', textAlign: 'center', py: 2}}>
-        Created with 💚 using React.js + Material UI
+      <Typography sx={{color: '#E2E8F0', textAlign: 'center', py: 2, px: 1, opacity: 0.7}}>
+        Designed with Figma, built using React.js and Material UI 😉.
       </Typography>
     </Box>
   );
