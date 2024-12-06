@@ -19,9 +19,9 @@ import ListItemText from '@mui/material/ListItemText';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import fiverLogo from '../assets/fiverr_blue.svg';
-import distantAvatar from '../assets/avatar.svg';
 import {useTheme} from '@emotion/react';
+
+import fiverLogo from '../assets/fiverr_blue.svg';
 
 type Props = {
   toggleMenu: boolean;
@@ -58,16 +58,12 @@ export const Menu: React.FC<Props> = ({
           <Box
             sx={{
               my: 2,
+              p: 1,
               /* mx: 4, */
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
             }}>
-            <Avatar
-              alt="distant_avatar"
-              src={distantAvatar}
-              sx={{/* ml: 1, */ width: '65px', height: '65px'}}
-            />
 
             <Button onClick={() => handleMenu(false)}>
               <CloseOutlinedIcon
