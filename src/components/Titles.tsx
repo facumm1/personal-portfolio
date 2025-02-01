@@ -5,14 +5,12 @@ import {LaptopDevice, MobileDevice} from './Devices';
 import {Header} from './Header';
 import {ReactTyped} from 'react-typed';
 
-const subtitles = [
-  `Hi, I'm Facundo Mamani...`,
-  'A frontend developer...',
-];
+const subtitles = [`Frontend developer`, 'Mobile developer', 'FiveM developer'];
 
 const subtitlesMobile = [
-  `Hi, I'm Facundo </br> Mamani...`,
-  'A frontend </br> developer...',
+  `Frontend developer`,
+  'Mobile developer',
+  'FiveM developer',
 ];
 
 export const Titles: React.FC<{handleMenu: (state: boolean) => void}> = ({
@@ -43,24 +41,25 @@ export const Titles: React.FC<{handleMenu: (state: boolean) => void}> = ({
           mt: isLaptop ? 1 : 3,
           color: 'secondary.main',
           fontFamily: 'typography.fontFamily',
-          fontSize: isLaptop ? '28px' : '22px',
+          fontSize: isLaptop ? '32px' : '32px',
           textAlign: 'center',
+          fontWeight: '800',
         }}>
-        Welcome to my portfolio! 👋
+        Facundo Mamani
       </Typography>
 
       <ReactTyped
         style={{
           color: '#E2E8F0',
           fontFamily: 'typography.fontFamily',
-          fontSize: '38px',
+          fontSize: '28px',
           textAlign: 'center',
-          fontWeight: '800',
+          fontWeight: '500',
           height: isLaptop ? 'auto' : '100px',
         }}
         loop
         strings={isLaptop ? subtitles : subtitlesMobile}
-        typeSpeed={120}
+        typeSpeed={150}
       />
 
       {/* Device frame */}
