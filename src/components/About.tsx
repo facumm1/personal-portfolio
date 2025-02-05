@@ -1,29 +1,26 @@
 import React from 'react';
-import {Avatar, Box, Button, Typography, useMediaQuery} from '@mui/material';
+import {Avatar, Box, Button, Typography} from '@mui/material';
 
-import {useTheme} from '@emotion/react';
 import ArticleIcon from '@mui/icons-material/Article';
 
 import distantPhoto from '../assets/distant.svg';
-
-const resumeLink =
-  'https://drive.google.com/file/d/1B3j7DZfLpVN-nO-wKIqPmJbsapbpziWd/view?usp=sharing';
+import {personalData} from '../utils/data';
 
 export const About: React.FC = () => {
-  const theme = useTheme();
-  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
-
   return (
     <Box sx={{...styles.aboutBox, minHeight: '100vh', mx: 4}}>
       <Typography
-        sx={{...styles.mainTitle, fontSize: isLaptop ? '38px' : '30px'}}>
+        sx={{
+          ...styles.mainTitle,
+          fontSize: {xs: '30px', lg: '38px', xl: '50px'},
+        }}>
         About me
       </Typography>
 
       <Box
         sx={{
           display: 'flex',
-          flexDirection: isLaptop ? 'row' : 'column',
+          flexDirection: {xs: 'column', lg: 'row'},
           justifyContent: 'space-between',
         }}>
         <Box>
@@ -31,7 +28,11 @@ export const About: React.FC = () => {
           <Typography sx={styles.dev}>Frontend Developer</Typography>
 
           <Typography
-            sx={{color: 'info.main', textAlign: 'left', fontSize: '18px'}}>
+            sx={{
+              color: 'info.main',
+              textAlign: 'left',
+              fontSize: {xs: '18px', xl: '24px'},
+            }}>
             23-year-old software developer. I’m also a electronic technician and
             computer engineering student.
             <br />
@@ -59,8 +60,8 @@ export const About: React.FC = () => {
             ...styles.image,
             pr: 3,
             pl: 4,
-            width: isLaptop ? '40%' : '100%',
-            height: isLaptop ? '40%' : '100%',
+            width: {xs: '100%', lg: '40%'},
+            height: {xs: '100%', lg: '40%'},
           }}
         />
       </Box>
@@ -69,7 +70,7 @@ export const About: React.FC = () => {
         variant="text"
         sx={styles.resumeBtn}
         target="_blank"
-        href={resumeLink}>
+        href={personalData.resumeLink}>
         <Typography sx={styles.btnTitle}>Download resume</Typography>
 
         <ArticleIcon sx={styles.btnIcon} />
@@ -86,14 +87,22 @@ const styles = {
     justifyContent: 'space-around',
   },
   mainTitle: {color: 'info.main', textAlign: 'center', mb: 4},
-  name: {color: 'info.main', textAlign: 'left', fontSize: '22px'},
+  name: {
+    color: 'info.main',
+    textAlign: 'left',
+    fontSize: {xs: '22px', xl: '34px'},
+  },
   dev: {
     color: 'secondary.main',
     textAlign: 'left',
-    fontSize: '22px',
+    fontSize: {xs: '22px', xl: '34px'},
     fontWeight: '800',
   },
-  bold: {color: 'secondary.main', fontWeight: '600', fontSize: '18px'},
+  bold: {
+    color: 'secondary.main',
+    fontWeight: '600',
+    fontSize: {xs: '18px', xl: '24px'},
+  },
   image: {borderRadius: '25px', my: 5},
   resumeBtn: {
     alignSelf: 'center',
@@ -113,10 +122,10 @@ const styles = {
   },
   btnTitle: {
     textTransform: 'none',
-    fontSize: '20px',
+    fontSize: {xs: '20px', xl: '24px'},
   },
   btnIcon: {
-    fontSize: '40px',
+    fontSize: {xs: '40px', xl: '50px'},
     ml: 1,
   },
 };

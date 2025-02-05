@@ -9,6 +9,7 @@ export const toastify = (message: string) => {
       backgroundColor: '#59D9C1',
       fontWeight: '800',
       color: '#122140',
+      fontSize: '18px',
       margin: 15,
     },
     icon: () => <CheckCircleIcon />,

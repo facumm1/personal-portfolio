@@ -14,6 +14,9 @@ export const LaptopDevice: React.FC = () => {
   const [imageIndex, setImageIndex] = useState<number>(0);
   const [triggerFade, setTriggerFade] = useState<boolean>(true);
 
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('xl'));
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTriggerFade(false);
@@ -31,8 +34,8 @@ export const LaptopDevice: React.FC = () => {
     <Box
       sx={{
         display: 'flex',
-        mt: 3,
-        transform: 'scale(0.55)',
+        mt: {xs: 3, xl: 5},
+        transform: isDesktop ? 'scale(0.7)' : 'scale(0.55)',
         width: '100%',
         alignSelf: 'center',
         height: '100%',
@@ -56,7 +59,7 @@ const MacbookPro: React.FC<{
         transform: 'scale(0.9)',
         position: 'absolute',
         top: '-22.5%',
-        right: isDesktop ? '0%' : '-25%',
+        right: isDesktop ? '0%' : '-20%',
         display: 'flex',
         justifyContent: 'center',
       }}>
@@ -84,7 +87,7 @@ const Phone = () => {
 
   return (
     <Box
-      style={{
+      sx={{
         transform: 'scale(0.7)',
         position: 'absolute',
         top: isDesktop ? '-50%' : '-20%',

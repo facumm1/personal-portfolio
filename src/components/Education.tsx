@@ -1,57 +1,56 @@
 import React from 'react';
-import {useTheme} from '@emotion/react';
-import {Box, Typography, useMediaQuery} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 
 const lightGray = '#E2E8F080';
 
 export const Education: React.FC = () => {
-  const theme = useTheme();
-  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
-
   return (
-    <Box sx={{...styles.educationBox, minHeight: isLaptop ? 'none' : '100vh'}}>
-      <Typography sx={{color: lightGray, fontSize: '32px', mx: 5}}>
+    <Box sx={{...styles.educationBox, minHeight: {xs: '100vh', lg: 'none'}}}>
+      <Typography
+        sx={{color: lightGray, fontSize: {xs: '32px', xl: '40px'}, mx: 5}}>
         Education
       </Typography>
 
       <Box sx={styles.card}>
-        <Typography sx={{color: lightGray, fontSize: '14px'}}>
+        <Typography sx={{color: lightGray, fontSize: {xs: '14px', xl: '20px'}}}>
           March 2024 - Present
         </Typography>
         <Typography
-          sx={{color: 'info.main', fontSize: '22px', my: 1}}
+          sx={{color: 'info.main', fontSize: {xs: '22px', xl: '30px'}, my: 1}}
           className="eduTitle">
           Computer engineering
         </Typography>
         <Typography
-          sx={{color: 'info.main', fontSize: '14px'}}
+          sx={{color: 'info.main', fontSize: {xs: '14px', xl: '20px'}}}
           className="eduTitle">
           Universidad de Buenos Aires (UBA)
         </Typography>
 
-        <Typography sx={{color: 'info.main', fontSize: '18px', my: 2}}>
-          I've already completed half of my first year's career. My aim is to
-          continue improving in software development, learn the fundamentals of
-          machine learning, and eventually become an AI engineer in the future.
+        <Typography
+          sx={{color: 'info.main', fontSize: {xs: '18px', xl: '22px'}, my: 2}}>
+          Finishing the first year of my degree. My aim is to continue improving
+          in software development, learn the fundamentals of machine learning,
+          and eventually become a ML engineer in the future.
         </Typography>
       </Box>
 
       <Box sx={styles.card}>
-        <Typography sx={{color: lightGray, fontSize: '14px'}}>
+        <Typography sx={{color: lightGray, fontSize: {xs: '14px', xl: '20px'}}}>
           2015 - 2020
         </Typography>
         <Typography
-          sx={{color: 'info.main', fontSize: '22px', my: 1}}
+          sx={{color: 'info.main', fontSize: {xs: '22px', xl: '30px'}, my: 1}}
           className="eduTitle">
           Electronic technician
         </Typography>
         <Typography
-          sx={{color: 'info.main', fontSize: '14px'}}
+          sx={{color: 'info.main', fontSize: {xs: '14px', xl: '20px'}}}
           className="eduTitle">
           Escuela Técnica N°1 “Otto Krause”
         </Typography>
 
-        <Typography sx={{color: 'info.main', fontSize: '18px', my: 2}}>
+        <Typography
+          sx={{color: 'info.main', fontSize: {xs: '18px', xl: '22px'}, my: 2}}>
           During my years studying electronics at this technical school, I
           learned the fundamentals of programming and developed robotics
           projects using embedded systems like Arduino and CIAA.

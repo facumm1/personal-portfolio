@@ -7,11 +7,7 @@ import {useTheme} from '@emotion/react';
 
 const lightGreen = '#59D9C120';
 
-type DOMComponent = React.ForwardRefExoticComponent<
-  React.RefAttributes<HTMLDivElement>
->;
-
-export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
+export const ProjectsPage = React.forwardRef<HTMLDivElement>((_, ref) => {
   const theme = useTheme();
   const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
@@ -22,7 +18,10 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
       {/* Content */}
       <Box sx={styles.box}>
         <Typography
-          sx={{...styles.mainTitle, fontSize: isLaptop ? '38px' : '30px'}}>
+          sx={{
+            ...styles.mainTitle,
+            fontSize: {xs: '30px', lg: '38px', xl: '50px'},
+          }}>
           Projects
         </Typography>
 
@@ -38,7 +37,11 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
                 alignItems: 'center',
               }}>
               <Typography
-                sx={{color: 'info.main', fontSize: '22px', mb: 1}}
+                sx={{
+                  color: 'info.main',
+                  fontSize: {xs: '22px', xl: '30px'},
+                  mb: 1,
+                }}
                 className="cardTitle">
                 {project.title}
               </Typography>
@@ -52,7 +55,7 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: isLaptop ? 'row' : 'column',
+                flexDirection: {xs: 'column', lg: 'row'},
                 alignItems: 'center',
               }}>
               <img
@@ -68,7 +71,8 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
                 }}
               />
 
-              <Typography sx={{color: 'info.main', fontSize: '18px'}}>
+              <Typography
+                sx={{color: 'info.main', fontSize: {xs: '18px', xl: '22px'}}}>
                 {project.description}
               </Typography>
             </Box>
@@ -92,7 +96,12 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
 });
 
 const styles = {
-  mainTitle: {color: 'info.main', textAlign: 'center', mb: 4},
+  mainTitle: {
+    color: 'info.main',
+    textAlign: 'center',
+    mb: {xs: 4, xl: 6},
+    mt: {xl: 2},
+  },
   box: {
     minHeight: '100vh',
     py: 4,
@@ -124,7 +133,7 @@ const styles = {
     borderRadius: '15px',
     bgcolor: lightGreen,
     color: 'secondary.main',
-    fontSize: '14px',
+    fontSize: {xs: '14px', xl: '20px'},
     fontWeight: '800',
     my: 'auto',
     mx: 0.5,

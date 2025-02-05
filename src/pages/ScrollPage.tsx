@@ -1,6 +1,5 @@
 import React from 'react';
-import {Box, Divider, useMediaQuery} from '@mui/material';
-import {useTheme} from '@emotion/react';
+import {Box} from '@mui/material';
 
 import {Services} from '../components/Services';
 import {Footer} from '../components/Footer';
@@ -10,20 +9,17 @@ import {ProjectsPage} from './ProjectsPage';
 import {ContactPage} from './ContactPage';
 import {SectionRefs} from './HomePage';
 
-interface Props {
+type Props = {
   scrollToSection: (section: string) => void;
   sections: SectionRefs;
-}
+};
 
 export const ScrollPage: React.FC<Props> = ({sections, scrollToSection}) => {
-  const theme = useTheme();
-  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
-
   return (
     <Box
       sx={{
         borderLeft: '1px solid rgba(226, 233, 240, 0.25)',
-        width: isLaptop ? '50%' : '100%',
+        width: {xs: '100%', lg: '50%'},
         overflowY: 'auto',
       }}>
       <Services ref={sections['Services']} scrollToSection={scrollToSection} />

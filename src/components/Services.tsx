@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Button,
-  Fade,
-  SvgIconProps,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
-import {useTheme} from '@emotion/react';
+import {Box, Button, Fade, SvgIconProps, Typography} from '@mui/material';
 
 import WebIcon from '@mui/icons-material/Web';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
@@ -17,9 +9,9 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 
 import {services} from '../utils/services';
 
-/* type DOMComponent = React.ForwardRefExoticComponent<
-  React.RefAttributes<HTMLDivElement>
->; */
+type ServicesPageProps = {
+  scrollToSection: (section: string) => void;
+};
 
 const icons: Record<string, React.FC<SvgIconProps>> = {
   web: WebIcon,
@@ -28,18 +20,8 @@ const icons: Record<string, React.FC<SvgIconProps>> = {
   fivem: SportsEsportsIcon,
 };
 
-type ServicesPageProps = {
-  scrollToSection: (section: string) => void;
-};
-
-export const Services: React.FC<ServicesPageProps> = React.forwardRef(
+export const Services = React.forwardRef<HTMLDivElement, ServicesPageProps>(
   ({scrollToSection}, ref) => {
-    const theme = useTheme();
-    const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
-
-    const serviceTitleSize = isLaptop ? '20px' : '16px';
-    const serviceSubtitleSize = isLaptop ? '16px' : '16px';
-
     return (
       <Fade in={true} timeout={1500}>
         <Box
@@ -53,7 +35,10 @@ export const Services: React.FC<ServicesPageProps> = React.forwardRef(
           }}>
           {/* Title */}
           <Typography
-            sx={{...styles.mainTitle, fontSize: isLaptop ? '38px' : '30px'}}>
+            sx={{
+              ...styles.mainTitle,
+              fontSize: {xs: '30px', lg: '38px', xl: '50px'},
+            }}>
             What can I do?
           </Typography>
 
@@ -65,7 +50,7 @@ export const Services: React.FC<ServicesPageProps> = React.forwardRef(
               return (
                 <Box
                   key={service.title}
-                  sx={{...styles.serviceBox, my: isLaptop ? 2.5 : 5}}>
+                  sx={{...styles.serviceBox, my: {xs: 5, lg: 2.5}}}>
                   <Box sx={styles.iconBox}>
                     <IconComponent
                       sx={{
@@ -79,13 +64,16 @@ export const Services: React.FC<ServicesPageProps> = React.forwardRef(
                     <Typography
                       sx={{
                         color: 'secondary.main',
-                        fontSize: serviceTitleSize,
+                        fontSize: {xs: '16px', lg: '20px', xl: '32px'},
                         fontWeight: '600',
                       }}>
                       {service.title}
                     </Typography>
                     <Typography
-                      sx={{fontSize: serviceSubtitleSize, color: 'info.main'}}>
+                      sx={{
+                        fontSize: {xs: '16px', xl: '24px'},
+                        color: 'info.main',
+                      }}>
                       {service.description}
                     </Typography>
                   </Box>
@@ -114,12 +102,12 @@ export const Services: React.FC<ServicesPageProps> = React.forwardRef(
             <Typography
               sx={{
                 textTransform: 'none',
-                fontSize: serviceTitleSize,
+                fontSize: {xs: '16px', lg: '20px', xl: '32px'},
                 px: 1,
               }}>
               Go to my projects
             </Typography>
-            <ShortcutIcon />
+            <ShortcutIcon sx={{fontSize: {xs: '30px', xl: '40px'}}} />
           </Button>
         </Box>
       </Fade>

@@ -1,19 +1,17 @@
 import React from 'react';
-import {useTheme} from '@emotion/react';
-import {Box, Typography, useMediaQuery} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+
 import {experiences} from '../utils/experiences';
 
 const lightGreen = '#59D9C120';
 const lightGray = '#E2E8F080';
 
 export const Experience: React.FC = () => {
-  const theme = useTheme();
-  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
-
   return (
-    <Box sx={{...styles.expBox, minHeight: isLaptop ? 'none' : '100vh'}}>
-      <Typography sx={{color: lightGray, fontSize: '32px', mx: 5}}>
+    <Box sx={{...styles.expBox, minHeight: {xs: '100vh', lg: 'none'}}}>
+      <Typography
+        sx={{color: lightGray, fontSize: {xs: '32px', xl: '40px'}, mx: 5}}>
         Experience
       </Typography>
 
@@ -22,9 +20,11 @@ export const Experience: React.FC = () => {
           key={exp.jobName}
           sx={styles.expCard}
           onClick={() => window.open(exp.website, '_blank')}>
-          <Typography sx={{color: lightGray, fontSize: '14px'}}>
+          <Typography
+            sx={{color: lightGray, fontSize: {xs: '14px', xl: '20px'}}}>
             {exp.datePeriod}
           </Typography>
+
           <Box
             sx={{
               display: 'flex',
@@ -45,7 +45,7 @@ export const Experience: React.FC = () => {
             {exp.role}
           </Typography>
 
-          <Typography sx={{color: 'info.main', fontSize: '18px', my: 2}}>
+          <Typography sx={{color: 'info.main', fontSize: {xs: '18px', xl: '22px'}, my: 2}}>
             {exp.description}
           </Typography>
 
@@ -90,18 +90,18 @@ const styles = {
   },
   expCardTitle: {
     color: 'info.main',
-    fontSize: '22px',
+    fontSize: {xs: '22px', xl: '30px'},
     my: 1,
   },
   expCardSubTitle: {
     color: 'info.main',
-    fontSize: '14px',
+    fontSize: {xs: '14px', xl: '20px'},
   },
   skill: {
     borderRadius: '15px',
     bgcolor: lightGreen,
     color: 'secondary.main',
-    fontSize: '14px',
+    fontSize: {xs: '14px', xl: '20px'},
     fontWeight: '800',
     my: 'auto',
     mx: 0.5,

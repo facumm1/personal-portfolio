@@ -26,8 +26,7 @@ type Props = {
   sections: SectionRefs;
 };
 
-//TODO types of forwardRef
-export const HomePage: React.FC<Props> = React.forwardRef(
+export const HomePage = React.forwardRef<HTMLDivElement, Props>(
   ({handleMenu, scrollToSection, sections}, ref) => {
     const theme = useTheme();
     const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
@@ -36,6 +35,7 @@ export const HomePage: React.FC<Props> = React.forwardRef(
       <Box
         sx={{height: isLaptop ? '100vh' : 'auto', overflowY: 'auto'}}
         ref={ref}>
+        {/* MOBILE */}
         {/* Header is only rendered in mobile view. */}
         {!isLaptop && <Header handleMenu={handleMenu} />}
 
@@ -48,6 +48,7 @@ export const HomePage: React.FC<Props> = React.forwardRef(
           {/* Titles & devices */}
           <Titles handleMenu={handleMenu} />
 
+          {/* LAPTOP/DESKTOP */}
           {/* ScrollPage is rendered in laptop/desktop view only. */}
           {!isLaptop ? (
             <Services

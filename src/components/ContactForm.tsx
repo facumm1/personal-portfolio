@@ -1,7 +1,14 @@
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
 
-import {Box, Button, TextField, Typography} from '@mui/material';
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 const lightGray = '#E2E8F0';
@@ -13,6 +20,9 @@ type Form = {
 };
 
 export const ContactForm: React.FC = () => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('xl'));
+
   const {
     control,
     handleSubmit,
@@ -52,11 +62,15 @@ export const ContactForm: React.FC = () => {
             helperText={errors.name ? errors.name.message : ''}
             sx={styles.textField}
             InputProps={{
-              style: {color: '#FFF', fontSize: '18px'},
+              style: {color: '#FFF', fontSize: isDesktop ? '24px' : '18px'},
               disableUnderline: false,
             }}
             InputLabelProps={{
-              style: {color: lightGray, fontWeight: '800', fontSize: '18px'},
+              style: {
+                color: lightGray,
+                fontWeight: '800',
+                fontSize: isDesktop ? '24px' : '18px',
+              },
             }}
             id="name"
             label="Your name"
@@ -87,11 +101,15 @@ export const ContactForm: React.FC = () => {
             helperText={errors.email ? errors.email.message : ''}
             sx={styles.textField}
             InputProps={{
-              style: {color: '#FFF', fontSize: '18px'},
+              style: {color: '#FFF', fontSize: isDesktop ? '24px' : '18px'},
               disableUnderline: false,
             }}
             InputLabelProps={{
-              style: {color: lightGray, fontWeight: '800', fontSize: '18px'},
+              style: {
+                color: lightGray,
+                fontWeight: '800',
+                fontSize: isDesktop ? '24px' : '18px',
+              },
             }}
             id="email"
             label="Your email"
@@ -118,11 +136,15 @@ export const ContactForm: React.FC = () => {
             helperText={errors.message ? errors.message.message : ''}
             sx={styles.textField}
             InputProps={{
-              style: {color: '#FFF', fontSize: '18px'},
+              style: {color: '#FFF', fontSize: isDesktop ? '24px' : '18px'},
               disableUnderline: false,
             }}
             InputLabelProps={{
-              style: {color: lightGray, fontWeight: '800', fontSize: '18px'},
+              style: {
+                color: lightGray,
+                fontWeight: '800',
+                fontSize: isDesktop ? '24px' : '18px',
+              },
             }}
             id="message"
             label="Your message"
@@ -143,10 +165,15 @@ export const ContactForm: React.FC = () => {
           },
         }}
         onClick={handleSubmit(onSubmit)}>
-        <Typography sx={{textTransform: 'none', fontSize: '20px', px: 1}}>
+        <Typography
+          sx={{
+            textTransform: 'none',
+            fontSize: {xs: '20px', xl: '24px'},
+            px: 1,
+          }}>
           Send message
         </Typography>
-        <SendIcon sx={{ml: 1}} />
+        <SendIcon sx={{ml: 1, fontSize: {xs: '20px', xl: '32px'}}} />
       </Button>
     </Box>
   );
@@ -157,9 +184,10 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    my: 3,
+    my: {xs: 3, lg: 5},
   },
   textField: {
+    fontSize: '18px',
     width: '90%',
     my: 1,
     '& .MuiInput-underline:before': {

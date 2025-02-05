@@ -17,7 +17,6 @@ function PortfolioApp() {
 
   //Media queries
   const isLaptop = useMediaQuery(portfolioTheme.breakpoints.up('lg'));
-  const isDesktop = useMediaQuery(portfolioTheme.breakpoints.up('xl'));
 
   const sections: Record<string, React.RefObject<HTMLDivElement>> = {
     ['Home']: useRef(null),
@@ -61,6 +60,7 @@ function PortfolioApp() {
           scrollToSection={scrollToSection}
         />
 
+        {/* MOBILE */}
         {/* These components are rendered in mobile view only. */}
         {!isLaptop && (
           <>
@@ -74,6 +74,7 @@ function PortfolioApp() {
           </>
         )}
 
+        {/* NOTIFICATIONS */}
         <ToastContainer />
       </Container>
     </AppTheme>

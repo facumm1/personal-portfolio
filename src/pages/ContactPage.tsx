@@ -1,24 +1,15 @@
 import React from 'react';
-import {Box, Button, Divider, Typography, useMediaQuery} from '@mui/material';
+import {Box, Button, Divider, Typography} from '@mui/material';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
 import {ContactForm} from '../components/ContactForm';
 import {toastify} from '../utils/toastify';
-import {useTheme} from '@emotion/react';
+import {personalData} from '../utils/data';
 
-const email = 'facundomamani120@gmail.com';
-
-type DOMComponent = React.ForwardRefExoticComponent<
-  React.RefAttributes<HTMLDivElement>
->;
-
-export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
-  const theme = useTheme();
-  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
-
+export const ContactPage = React.forwardRef<HTMLDivElement>((_, ref) => {
   const handleCopy = () => {
     navigator.clipboard
-      .writeText(email)
+      .writeText(personalData.email)
       .then(() => {
         toastify('Copied to clipboard');
       })
@@ -33,14 +24,18 @@ export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
 
       <Box sx={styles.box}>
         <Typography
-          sx={{...styles.mainTitle, fontSize: isLaptop ? '38px' : '30px'}}>
+          sx={{...styles.mainTitle, fontSize: {xs: '30px', xl: '50px'}}}>
           Let's get in touch!
         </Typography>
 
         <Typography
-          sx={{color: 'info.main', fontSize: '18px', textAlign: 'center'}}>
-          It could be... For a job proposal? Or maybe for a freelance project,
-          who knows? 🤔
+          sx={{
+            color: 'info.main',
+            fontSize: {xs: '18px', xl: '24px'},
+            textAlign: 'center',
+          }}>
+          It could be... For a job proposal? <br /> Or maybe for a freelance
+          project, who knows? 🤔
         </Typography>
 
         {/* Form */}
@@ -50,7 +45,7 @@ export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
           sx={{
             color: 'info.main',
             textAlign: 'center',
-            fontSize: '20px',
+            fontSize: {xs: '20px', xl: '24px'},
             my: 5,
           }}>
           or do you prefer a simpler
@@ -61,7 +56,9 @@ export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
         <Box
           display="flex"
           sx={{justifyContent: 'center', alignItems: 'center'}}>
-          <Typography color="secondary" sx={{fontSize: '20px'}}>
+          <Typography
+            color="secondary"
+            sx={{fontSize: {xs: '20px', xl: '24px'}}}>
             Copy my email
           </Typography>
 
@@ -69,7 +66,7 @@ export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
             variant="contained"
             sx={styles.emailButton}
             onClick={handleCopy}>
-            <EmailOutlinedIcon sx={{fontSize: '40px'}} />
+            <EmailOutlinedIcon sx={{fontSize: {xs: '40px', xl: '50px'}}} />
           </Button>
         </Box>
       </Box>
@@ -78,10 +75,10 @@ export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
 });
 
 const styles = {
-  mainTitle: {color: 'info.main', textAlign: 'center', mb: 2},
+  mainTitle: {color: 'info.main', textAlign: 'center', mb: {xs: 2, xl: 4}},
   box: {
     minHeight: '100vh',
-    py: 4,
+    py: {xs: 4, xl: 6},
     px: 5,
     display: 'flex',
     flexDirection: 'column',
@@ -97,7 +94,7 @@ const styles = {
     justifyContent: 'center',
     '&:hover': {
       bgcolor: 'primary.main',
-      color: 'secondary.main'
+      color: 'secondary.main',
     },
   },
 };
