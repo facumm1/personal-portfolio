@@ -9,10 +9,10 @@ const lightGray = '#E2E8F080';
 
 export const Experience: React.FC = () => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
-    <Box sx={{...styles.expBox, minHeight: isDesktop ? 'none' : '100vh'}}>
+    <Box sx={{...styles.expBox, minHeight: isLaptop ? 'none' : '100vh'}}>
       <Typography sx={{color: lightGray, fontSize: '32px', mx: 5}}>
         Experience
       </Typography>

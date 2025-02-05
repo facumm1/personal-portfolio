@@ -2,22 +2,31 @@ import React from 'react';
 import {
   Box,
   Button,
-  Divider,
   Fade,
+  SvgIconProps,
   Typography,
   useMediaQuery,
 } from '@mui/material';
+import {useTheme} from '@emotion/react';
 
 import WebIcon from '@mui/icons-material/Web';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ShortcutIcon from '@mui/icons-material/Shortcut';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import {useTheme} from '@emotion/react';
+
+import {services} from '../utils/services';
 
 /* type DOMComponent = React.ForwardRefExoticComponent<
   React.RefAttributes<HTMLDivElement>
 >; */
+
+const icons: Record<string, React.FC<SvgIconProps>> = {
+  web: WebIcon,
+  phone: PhoneIphoneIcon,
+  figma: BorderColorIcon,
+  fivem: SportsEsportsIcon,
+};
 
 type ServicesPageProps = {
   scrollToSection: (section: string) => void;
@@ -26,10 +35,10 @@ type ServicesPageProps = {
 export const Services: React.FC<ServicesPageProps> = React.forwardRef(
   ({scrollToSection}, ref) => {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+    const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
-    const serviceTitleSize = isDesktop ? '20px' : '16px';
-    const serviceSubtitleSize = isDesktop ? '16px' : '16px';
+    const serviceTitleSize = isLaptop ? '20px' : '16px';
+    const serviceSubtitleSize = isLaptop ? '16px' : '16px';
 
     return (
       <Fade in={true} timeout={1500}>
@@ -42,116 +51,50 @@ export const Services: React.FC<ServicesPageProps> = React.forwardRef(
             alignItems: 'center',
             minHeight: '100vh',
           }}>
-          <Divider sx={{borderColor: 'info.main'}} />
-
+          {/* Title */}
           <Typography
-            sx={{...styles.mainTitle, fontSize: isDesktop ? '38px' : '30px'}}>
+            sx={{...styles.mainTitle, fontSize: isLaptop ? '38px' : '30px'}}>
             What can I do?
           </Typography>
+
           {/* Services */}
           <Box>
-            {/* Web service */}
-            <Box sx={{...styles.serviceBox, my: isDesktop ? 2.5 : 5}}>
-              <Box sx={styles.iconBox}>
-                <WebIcon
-                  sx={{
-                    fontSize: '40px',
-                    color: 'primary.main',
-                  }}
-                />
-              </Box>
+            {services.map(service => {
+              const IconComponent = icons[service.icon] || WebIcon;
 
-              <Box sx={{width: '70%'}}>
-                <Typography
-                  sx={{
-                    color: 'secondary.main',
-                    fontSize: serviceTitleSize,
-                    fontWeight: '600',
-                  }}>
-                  Website development
-                </Typography>
-                <Typography
-                  sx={{fontSize: serviceSubtitleSize, color: 'info.main'}}>
-                  I am able to create a website based on UI design or ideas.
-                </Typography>
-              </Box>
-            </Box>
+              return (
+                <Box
+                  key={service.title}
+                  sx={{...styles.serviceBox, my: isLaptop ? 2.5 : 5}}>
+                  <Box sx={styles.iconBox}>
+                    <IconComponent
+                      sx={{
+                        fontSize: '40px',
+                        color: 'primary.main',
+                      }}
+                    />
+                  </Box>
 
-            {/* Mobile service */}
-            <Box sx={{...styles.serviceBox, my: isDesktop ? 2.5 : 5}}>
-              <Box sx={styles.iconBox}>
-                <PhoneIphoneIcon
-                  sx={{fontSize: '40px', color: 'primary.main'}}
-                />
-              </Box>
-
-              <Box sx={{width: '70%'}}>
-                <Typography
-                  sx={{
-                    fontSize: serviceTitleSize,
-                    color: 'secondary.main',
-                    fontWeight: '600',
-                  }}>
-                  Mobile development
-                </Typography>
-                <Typography
-                  sx={{fontSize: serviceSubtitleSize, color: 'info.main'}}>
-                  I can develop and deploy a mobile application to app stores.
-                </Typography>
-              </Box>
-            </Box>
-
-            {/* UI service */}
-            <Box sx={{...styles.serviceBox, my: isDesktop ? 2.5 : 5}}>
-              <Box sx={styles.iconBox}>
-                <BorderColorIcon
-                  sx={{fontSize: '40px', color: 'primary.main'}}
-                />
-              </Box>
-
-              <Box sx={{width: '70%'}}>
-                <Typography
-                  sx={{
-                    fontSize: serviceTitleSize,
-                    color: 'secondary.main',
-                    fontWeight: '600',
-                  }}>
-                  UI design
-                </Typography>
-                <Typography
-                  sx={{fontSize: serviceSubtitleSize, color: 'info.main'}}>
-                  I can discuss about UI ideas in order to create a Figma
-                  design.
-                </Typography>
-              </Box>
-            </Box>
-
-            {/* Backend service */}
-            <Box sx={{...styles.serviceBox, my: isDesktop ? 2.5 : 5}}>
-              <Box sx={styles.iconBox}>
-                <SportsEsportsIcon
-                  sx={{fontSize: '40px', color: 'primary.main'}}
-                />
-              </Box>
-
-              <Box sx={{width: '70%'}}>
-                <Typography
-                  sx={{
-                    fontSize: serviceTitleSize,
-                    color: 'secondary.main',
-                    fontWeight: '600',
-                  }}>
-                  FiveM scripting
-                </Typography>
-                <Typography
-                  sx={{fontSize: serviceSubtitleSize, color: 'info.main'}}>
-                  I am able to develop scripts for FiveM servers using popular
-                  frameworks.
-                </Typography>
-              </Box>
-            </Box>
+                  <Box sx={{width: '70%'}}>
+                    <Typography
+                      sx={{
+                        color: 'secondary.main',
+                        fontSize: serviceTitleSize,
+                        fontWeight: '600',
+                      }}>
+                      {service.title}
+                    </Typography>
+                    <Typography
+                      sx={{fontSize: serviceSubtitleSize, color: 'info.main'}}>
+                      {service.description}
+                    </Typography>
+                  </Box>
+                </Box>
+              );
+            })}
           </Box>
-          {/* Fiverr button */}
+
+          {/* Go to projects Button */}
           <Button
             variant="outlined"
             color="secondary"

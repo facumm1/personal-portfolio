@@ -6,10 +6,10 @@ const lightGray = '#E2E8F080';
 
 export const Education: React.FC = () => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
-    <Box sx={{...styles.educationBox, minHeight: isDesktop ? 'none' : '100vh'}}>
+    <Box sx={{...styles.educationBox, minHeight: isLaptop ? 'none' : '100vh'}}>
       <Typography sx={{color: lightGray, fontSize: '32px', mx: 5}}>
         Education
       </Typography>

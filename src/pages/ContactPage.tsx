@@ -14,7 +14,7 @@ type DOMComponent = React.ForwardRefExoticComponent<
 
 export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
   const handleCopy = () => {
     navigator.clipboard
@@ -33,7 +33,7 @@ export const ContactPage: DOMComponent = React.forwardRef((_, ref) => {
 
       <Box sx={styles.box}>
         <Typography
-          sx={{...styles.mainTitle, fontSize: isDesktop ? '38px' : '30px'}}>
+          sx={{...styles.mainTitle, fontSize: isLaptop ? '38px' : '30px'}}>
           Let's get in touch!
         </Typography>
 

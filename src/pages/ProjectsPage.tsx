@@ -13,7 +13,7 @@ type DOMComponent = React.ForwardRefExoticComponent<
 
 export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
     <Box ref={ref}>
@@ -22,7 +22,7 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
       {/* Content */}
       <Box sx={styles.box}>
         <Typography
-          sx={{...styles.mainTitle, fontSize: isDesktop ? '38px' : '30px'}}>
+          sx={{...styles.mainTitle, fontSize: isLaptop ? '38px' : '30px'}}>
           Projects
         </Typography>
 
@@ -52,7 +52,7 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: isDesktop ? 'row' : 'column',
+                flexDirection: isLaptop ? 'row' : 'column',
                 alignItems: 'center',
               }}>
               <img
@@ -61,7 +61,7 @@ export const ProjectsPage: DOMComponent = React.forwardRef((_, ref) => {
                 style={{
                   borderRadius: '5px',
                   margin: '20px 0',
-                  width: isDesktop ? '25%' : '100%',
+                  width: isLaptop ? '25%' : '100%',
                   height: '35%',
                   marginRight: '15px',
                   objectFit: 'cover',

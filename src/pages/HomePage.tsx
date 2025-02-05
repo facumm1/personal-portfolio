@@ -30,30 +30,32 @@ type Props = {
 export const HomePage: React.FC<Props> = React.forwardRef(
   ({handleMenu, scrollToSection, sections}, ref) => {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+    const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
     return (
       <Box
-        sx={{height: isDesktop ? '100vh' : 'auto', overflowY: 'auto'}}
+        sx={{height: isLaptop ? '100vh' : 'auto', overflowY: 'auto'}}
         ref={ref}>
-        {!isDesktop && <Header handleMenu={handleMenu} />}
+        {/* Header is only rendered in mobile view. */}
+        {!isLaptop && <Header handleMenu={handleMenu} />}
 
         <Box
           sx={{
             display: 'flex',
-            flexDirection: isDesktop ? 'row' : 'column',
+            flexDirection: isLaptop ? 'row' : 'column',
             justifyContent: 'flex-end',
           }}>
           {/* Titles & devices */}
           <Titles handleMenu={handleMenu} />
 
-          {isDesktop ? (
-            <ScrollPage sections={sections} scrollToSection={scrollToSection} />
-          ) : (
+          {/* ScrollPage is rendered in laptop/desktop view only. */}
+          {!isLaptop ? (
             <Services
               ref={sections['Services']}
               scrollToSection={scrollToSection}
             />
+          ) : (
+            <ScrollPage sections={sections} scrollToSection={scrollToSection} />
           )}
         </Box>
       </Box>

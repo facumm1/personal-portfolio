@@ -21,11 +21,11 @@ export const portfolioTheme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1536,
+      xs: 0, // Mobile
+      sm: 600, // Mobile/tablet
+      md: 900, // Tablet
+      lg: 1200, // Laptop
+      xl: 1600, // Desktop
     },
   },
 });

@@ -17,13 +17,13 @@ interface Props {
 
 export const ScrollPage: React.FC<Props> = ({sections, scrollToSection}) => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
     <Box
       sx={{
         borderLeft: '1px solid rgba(226, 233, 240, 0.25)',
-        width: isDesktop ? '50%' : '100%',
+        width: isLaptop ? '50%' : '100%',
         overflowY: 'auto',
       }}>
       <Services ref={sections['Services']} scrollToSection={scrollToSection} />

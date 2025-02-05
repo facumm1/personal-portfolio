@@ -6,24 +6,24 @@ import ArticleIcon from '@mui/icons-material/Article';
 
 import distantPhoto from '../assets/distant.svg';
 
-const link =
+const resumeLink =
   'https://drive.google.com/file/d/1B3j7DZfLpVN-nO-wKIqPmJbsapbpziWd/view?usp=sharing';
 
 export const About: React.FC = () => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
     <Box sx={{...styles.aboutBox, minHeight: '100vh', mx: 4}}>
       <Typography
-        sx={{...styles.mainTitle, fontSize: isDesktop ? '38px' : '30px'}}>
+        sx={{...styles.mainTitle, fontSize: isLaptop ? '38px' : '30px'}}>
         About me
       </Typography>
 
       <Box
         sx={{
           display: 'flex',
-          flexDirection: isDesktop ? 'row' : 'column',
+          flexDirection: isLaptop ? 'row' : 'column',
           justifyContent: 'space-between',
         }}>
         <Box>
@@ -59,13 +59,17 @@ export const About: React.FC = () => {
             ...styles.image,
             pr: 3,
             pl: 4,
-            width: isDesktop ? '40%' : '100%',
-            height: isDesktop ? '40%' : '100%',
+            width: isLaptop ? '40%' : '100%',
+            height: isLaptop ? '40%' : '100%',
           }}
         />
       </Box>
 
-      <Button variant="text" sx={styles.resumeBtn} target="_blank" href={link}>
+      <Button
+        variant="text"
+        sx={styles.resumeBtn}
+        target="_blank"
+        href={resumeLink}>
         <Typography sx={styles.btnTitle}>Download resume</Typography>
 
         <ArticleIcon sx={styles.btnIcon} />

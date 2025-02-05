@@ -10,7 +10,7 @@ interface Props {
 
 export const Header: React.FC<Props> = ({handleMenu}) => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
     <Box
@@ -19,11 +19,11 @@ export const Header: React.FC<Props> = ({handleMenu}) => {
         alignItems: 'center',
         justifyContent: 'space-between',
         pt: 3,
-        pb: isDesktop ? 1 : 2,
+        pb: isLaptop ? 1 : 2,
       }}>
       <Button
         onClick={() => handleMenu(true)}
-        sx={{position: isDesktop ? 'static' : 'static', top: '5%'}}>
+        sx={{position: isLaptop ? 'static' : 'static', top: '5%'}}>
         <Avatar
           alt="hamburger"
           src={hamburger}
