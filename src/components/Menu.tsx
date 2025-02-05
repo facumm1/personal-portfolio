@@ -119,7 +119,7 @@ const SectionButton = ({
         <ListItemText
           primaryTypographyProps={{
             pl: 1,
-            fontSize: isLaptop ? '28px' : '24px',
+            fontSize: {xs: '24px', lg: '28px', xl: '32px'},
           }}
           primary={text}
           sx={{color: 'primary.main', fontSize: '32px'}}
