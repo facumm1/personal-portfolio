@@ -52,6 +52,7 @@ const MacbookPro: React.FC<{
 }> = ({imageIndex, triggerFade}) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('xl'));
+  const isLargeDesktop = useMediaQuery(theme.breakpoints.up(2100));
 
   return (
     <Box
@@ -59,9 +60,8 @@ const MacbookPro: React.FC<{
         transform: 'scale(0.9)',
         position: 'absolute',
         top: '-22.5%',
-        right: isDesktop ? '0%' : '-20%',
+        right: isLargeDesktop ? '15%' : isDesktop ? '0%' : '-20%',
         display: 'flex',
-        justifyContent: 'center',
       }}>
       <DeviceFrameset device="MacBook Pro">
         <Box sx={{bgcolor: 'primary.main', height: '100%', width: '100%'}}>
@@ -84,6 +84,7 @@ const MacbookPro: React.FC<{
 const Phone = () => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('xl'));
+  const isLargeDesktop = useMediaQuery(theme.breakpoints.up(2100));
 
   return (
     <Box
@@ -91,7 +92,7 @@ const Phone = () => {
         transform: 'scale(0.7)',
         position: 'absolute',
         top: isDesktop ? '-50%' : '-20%',
-        right: isDesktop ? '-20%' : '-35%',
+        right: isLargeDesktop ? '-5%' : isDesktop ? '-20%' : '-35%',
       }}>
       <DeviceFrameset device="iPhone X" color="gold">
         <Box
