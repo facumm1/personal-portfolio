@@ -1,5 +1,5 @@
 export const personalData = {
   resumeLink:
-    'https://drive.google.com/file/d/1B3j7DZfLpVN-nO-wKIqPmJbsapbpziWd/view?usp=sharing',
+    'https://drive.google.com/file/d/1ObVc8Dw1Oa-shXzEBtbiuNR2otyWExg-/view?usp=sharing',
   email: 'facundomamani120@gmail.com',
 };
