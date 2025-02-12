@@ -48,7 +48,7 @@ export const About: React.FC = () => {
             , creating mobile & web applications and integrating them with
             backend services.
             <br />
-            <br />I also had an experience developing with JQuery, Lua, Node.js,
+            <br />I also had an experience developing with Python, Lua, C#,
             etc.
           </Typography>
         </Box>
