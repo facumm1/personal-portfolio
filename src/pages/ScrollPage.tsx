@@ -28,7 +28,7 @@ export const ScrollPage: React.FC<Props> = ({sections, scrollToSection}) => {
 
       <ProjectsPage ref={sections['Projects']} />
 
-      <ContactPage ref={sections['Get in touch']} />
+      {/* <ContactPage ref={sections['Get in touch']} /> */}
 
       <Footer />
     </Box>

@@ -5,7 +5,7 @@ const lightGray = '#E2E8F080';
 
 export const Education: React.FC = () => {
   return (
-    <Box sx={{...styles.educationBox, minHeight: {xs: '100vh', lg: 'none'}}}>
+    <Box sx={{...styles.educationBox, minHeight: 'none'}}>
       <Typography
         sx={{color: lightGray, fontSize: {xs: '32px', xl: '40px'}, mx: 5}}>
         Education

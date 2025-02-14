@@ -1,10 +1,10 @@
 export const experiences = [
   {
-    datePeriod: 'March 2024 - Present',
+    datePeriod: 'March 2024 - February 2025',
     jobName: 'Lix Software',
     role: 'Lua & Frontend developer - Fiverr agency',
-    description: `I craft in-game UI interfaces for the FiveM platform (GTA V online)
-          using vanilla JavaScript, jQuery, and React.js. I also work with Lua
+    description: `I crafted in-game UI interfaces for the FiveM platform (GTA V online)
+          using vanilla JavaScript, jQuery, and React.js. I also worked with Lua
           scripts to retrieve player and server information and display it in my
           UIs.`,
     skills: ['Javascript', 'JQuery', 'React.js', 'Lua', 'CSS'],

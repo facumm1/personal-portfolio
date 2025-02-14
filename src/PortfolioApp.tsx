@@ -68,7 +68,7 @@ function PortfolioApp() {
 
             <ProjectsPage ref={sections['Projects']} />
 
-            <ContactPage ref={sections['Get in touch']} />
+            {/* <ContactPage ref={sections['Get in touch']} /> */}
 
             <Footer />
           </>

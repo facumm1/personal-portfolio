@@ -1,9 +1,8 @@
 import React from 'react';
-import {Avatar, Box, Button, Typography} from '@mui/material';
+import {Box, Button, Typography} from '@mui/material';
 
 import ArticleIcon from '@mui/icons-material/Article';
 
-import distantPhoto from '../assets/distant.svg';
 import {personalData} from '../utils/data';
 
 export const About: React.FC = () => {
@@ -22,6 +21,8 @@ export const About: React.FC = () => {
           display: 'flex',
           flexDirection: {xs: 'column', lg: 'row'},
           justifyContent: 'space-between',
+          mt: 4,
+          mb: 6,
         }}>
         <Box>
           <Typography sx={styles.name}>Facundo Mamani</Typography>
@@ -48,12 +49,16 @@ export const About: React.FC = () => {
             , creating mobile & web applications and integrating them with
             backend services.
             <br />
-            <br />I also had an experience developing with Python, Lua, C#,
-            etc.
+            <br />
+            I recently worked at Lix Software, a Fiverr agency, where I
+            developed scripts and UIs for FiveM plataform using web development
+            tools such as Javascript, React.js and Lua.
+            <br />
+            <br />I also had an experience developing with Python, C# and MySQL.
           </Typography>
         </Box>
 
-        <Avatar
+        {/* <Avatar
           alt="distant_photo"
           src={distantPhoto}
           sx={{
@@ -63,7 +68,7 @@ export const About: React.FC = () => {
             width: {xs: '100%', lg: '40%'},
             height: {xs: '100%', lg: '40%'},
           }}
-        />
+        /> */}
       </Box>
 
       <Button
@@ -86,7 +91,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-around',
   },
-  mainTitle: {color: 'info.main', textAlign: 'center', mb: 4},
+  mainTitle: {color: 'info.main', textAlign: 'center'},
   name: {
     color: 'info.main',
     textAlign: 'left',
