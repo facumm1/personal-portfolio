@@ -59,7 +59,7 @@ export const Menu: React.FC<Props> = ({
 
           {/* Buttons */}
           <List sx={{my: 4}}>
-            {['Home', 'About me', 'Projects', 'Get in touch'].map(text => {
+            {['Home', 'About me', 'Projects'].map(text => {
               const isHomeSection = text === 'Home';
               const responsiveHome = !isLaptop ? 'Home' : 'Services';
 
@@ -71,7 +71,6 @@ export const Menu: React.FC<Props> = ({
                   scrollToSection={scrollToSection}
                   text={text}
                   section={section}
-                  isLaptop={isLaptop}
                 />
               );
             })}
@@ -106,12 +105,10 @@ const SectionButton = ({
   scrollToSection,
   text,
   section,
-  isLaptop,
 }: {
   scrollToSection: (section: string) => void;
   text: string;
   section: string;
-  isLaptop: boolean;
 }) => {
   return (
     <ListItem key={text} disablePadding>
