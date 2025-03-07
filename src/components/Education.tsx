@@ -30,7 +30,8 @@ export const Education: React.FC = () => {
           sx={{color: 'info.main', fontSize: {xs: '18px', xl: '22px'}, my: 2}}>
           Finishing the first year of my degree. My aim is to continue improving
           in software development, learn the fundamentals of machine learning,
-          and eventually become a ML engineer in the future.
+          algorithms, data structures and eventually become a full-stack / ML
+          engineer in the future.
         </Typography>
       </Box>
 

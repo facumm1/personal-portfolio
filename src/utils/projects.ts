@@ -27,13 +27,13 @@ export type CodeProject = {
 // Projects
 export const arroyos: CodeProject[] = [
   {
-    title: 'Dos Arroyos Admin Web App',
+    title: 'Dos Arroyos - Admin Web App',
     description: 'Github repository not available due to private source code.',
     thumbnail: arroyosWeb,
     preview: 'https://youtu.be/ohoPSuTOEdQ?si=Y-ynSw7zKVsdln_k',
   },
   {
-    title: 'Dos Arroyos Client Mobile App',
+    title: 'Dos Arroyos - Client Mobile App',
     description: 'Github repository not available due to private source code.',
     thumbnail: arroyosMobile,
     preview: 'https://youtu.be/DFxRTq4r2M0?si=18iuk2bND3w9C8Jg',
@@ -95,7 +95,7 @@ export const projects: Project[] = [
     title: 'Dos Arroyos Cambios',
     description:
       'I built two React & React Native CLI apps that were integrated with an API REST. They used Firebase authentication and push notifications for agency announcements or users’ order statuses.',
-    skills: ['React Native', 'React.js', 'Typescript', 'CSS'],
+    skills: ['React Native', 'React.js', 'Typescript', 'Material UI', 'CSS'],
     thumbnail: arroyosWeb,
     link: 'https://www.youtube.com/playlist?list=PL6ICIrJ2y_2vVxn0bUrCvo6XDmWJV0UWZ',
     details: arroyos,
@@ -104,7 +104,7 @@ export const projects: Project[] = [
     company: 'Team Laniakea',
     title: 'Pathway Chick-fil-A',
     description:
-      'A React Native CLI app destinated to new Chick-fil-A employees. Useful for them as a guide when cooking different meals or coffees. Also it had some training plans in order to measure their progress. It had users authentication using SSO Okta OAuth2 and Fastlane for deployment automation.',
+      'A React Native CLI app destinated to new Chick-fil-A employees. Useful for them as a guide when cooking different meals or coffees. Also it had some training plans in order to measure their progress. Fastlane was used for deployment automation.',
     skills: ['React Native', 'Typescript', 'CSS', 'Fastlane'],
     thumbnail: pathway,
     link: 'https://www.youtube.com/playlist?list=PL6ICIrJ2y_2vVxn0bUrCvo6XDmWJV0UWZ',

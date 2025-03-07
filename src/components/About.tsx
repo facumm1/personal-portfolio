@@ -37,7 +37,7 @@ export const About: React.FC<Props> = ({scrollToSection}) => {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: {xs: 'column', lg: 'row'},
+          flexDirection: {xs: 'column'},
           justifyContent: 'space-between',
           mt: 4,
           mb: 2,
@@ -66,8 +66,8 @@ export const About: React.FC<Props> = ({scrollToSection}) => {
             <br />
             <br />
             I recently worked at Lix Software, a Fiverr agency, where I
-            developed scripts and graphic interfaces for FiveM platform using web development
-            tools such as Javascript, React.js and Lua.
+            developed scripts and graphic interfaces for FiveM platform using
+            web development tools such as Javascript, React.js and Lua.
             <br />
             <br />
             Currently I'm looking for new opportunities in frontend development
@@ -76,26 +76,40 @@ export const About: React.FC<Props> = ({scrollToSection}) => {
             developer.
           </Typography>
         </Box>
-      </Box>
 
-      <Box sx={{display: 'flex', justifyContent: 'center', my: 1}}>
-        <Link href={personalData.github} target="_blank">
-          <GitHubIcon sx={{mx: 1, color: 'secondary.main', fontSize: '35px'}} />
-        </Link>
+        <Box sx={{display: 'flex', justifyContent: 'center', mt: {xs: 2, xl: 4}}}>
+          <Link href={personalData.github} target="_blank">
+            <GitHubIcon
+              sx={{
+                mx: 1,
+                color: 'secondary.main',
+                fontSize: {xs: '30px', xl: '50px'},
+              }}
+            />
+          </Link>
 
-        <Link href={personalData.linkedin} target="_blank">
-          <LinkedInIcon
-            sx={{mx: 1, color: 'secondary.main', fontSize: '40px'}}
-          />
-        </Link>
+          <Link href={personalData.linkedin} target="_blank">
+            <LinkedInIcon
+              sx={{
+                mx: 1,
+                color: 'secondary.main',
+                fontSize: {xs: '30px', xl: '50px'},
+              }}
+            />
+          </Link>
 
-        <Link href={personalData.fiverr} target="_blank">
-          <Avatar
-            alt="fiver_logo"
-            src={fiverLogo}
-            sx={{mx: 1, width: '40px', height: '40px'}}
-          />
-        </Link>
+          <Link href={personalData.fiverr} target="_blank">
+            <Avatar
+              alt="fiver_logo"
+              src={fiverLogo}
+              sx={{
+                mx: 1,
+                width: {xs: '30px', xl: '50px'},
+                height: {xs: '30px', xl: '50px'},
+              }}
+            />
+          </Link>
+        </Box>
       </Box>
 
       {/* Nav to projects */}

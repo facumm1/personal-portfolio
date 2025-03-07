@@ -20,6 +20,8 @@ export const ProjectModal = ({details, isModalOpened, handleModal}: Props) => {
         width: {xs: '100%', lg: '50%'},
         overflow: 'hidden',
       }}
+      disableEnforceFocus
+      disableAutoFocus
       open={isModalOpened}
       onClose={() => handleModal()}>
       <Fade in={isModalOpened} timeout={500}>
