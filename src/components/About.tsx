@@ -1,19 +1,37 @@
 import React from 'react';
-import {Box, Button, Typography} from '@mui/material';
+import {Avatar, Box, Button, Link, Typography} from '@mui/material';
 
-import ArticleIcon from '@mui/icons-material/Article';
+import ShortcutIcon from '@mui/icons-material/Shortcut';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 import {personalData} from '../utils/data';
+import fiverLogo from '../assets/fiverr_green.svg';
 
-export const About: React.FC = () => {
+type Props = {
+  scrollToSection: (section: string) => void;
+};
+
+export const About: React.FC<Props> = ({scrollToSection}) => {
   return (
-    <Box sx={{...styles.aboutBox, minHeight: '100vh', mx: 4}}>
+    <Box sx={{...styles.aboutBox, minHeight: '100vh', mx: 4, mb: 4}}>
       <Typography
         sx={{
           ...styles.mainTitle,
-          fontSize: {xs: '30px', lg: '38px', xl: '50px'},
+          fontSize: {xs: '30px', lg: '30px', xl: '50px'},
+          mt: '30px',
         }}>
-        About me
+        Welcome to my
+        <Typography
+          component="span"
+          sx={{
+            color: 'secondary.main',
+            fontWeight: '600',
+            fontSize: {xs: '30px', lg: '30px', xl: '50px'},
+          }}>
+          {'\n'}portfolio
+        </Typography>
+        !
       </Typography>
 
       <Box
@@ -22,23 +40,20 @@ export const About: React.FC = () => {
           flexDirection: {xs: 'column', lg: 'row'},
           justifyContent: 'space-between',
           mt: 4,
-          mb: 6,
+          mb: 2,
         }}>
         <Box>
-          <Typography sx={styles.name}>Facundo Mamani</Typography>
-          <Typography sx={styles.dev}>Frontend Developer</Typography>
-
           <Typography
             sx={{
               color: 'info.main',
               textAlign: 'left',
               fontSize: {xs: '18px', xl: '24px'},
             }}>
-            23-year-old software developer. I’m also a electronic technician and
-            computer engineering student.
+            Hi! I'm Facundo, a 23-year-old software developer. I’m also a
+            electronic technician and computer engineering student.
             <br />
             <br />
-            Since the last two years I’ve been working with{' '}
+            During my two years of experience, I’ve been working with{' '}
             <Typography component="span" sx={styles.bold}>
               React
             </Typography>{' '}
@@ -51,34 +66,64 @@ export const About: React.FC = () => {
             <br />
             <br />
             I recently worked at Lix Software, a Fiverr agency, where I
-            developed scripts and UIs for FiveM plataform using web development
+            developed scripts and graphic interfaces for FiveM platform using web development
             tools such as Javascript, React.js and Lua.
             <br />
-            <br />I also had an experience developing with Python, C# and MySQL.
+            <br />
+            Currently I'm looking for new opportunities in frontend development
+            or even backend development. I'm actively learning backend
+            technologies such as C#, .NET, and MySQL to become a full-stack
+            developer.
           </Typography>
         </Box>
-
-        {/* <Avatar
-          alt="distant_photo"
-          src={distantPhoto}
-          sx={{
-            ...styles.image,
-            pr: 3,
-            pl: 4,
-            width: {xs: '100%', lg: '40%'},
-            height: {xs: '100%', lg: '40%'},
-          }}
-        /> */}
       </Box>
 
-      <Button
-        variant="text"
-        sx={styles.resumeBtn}
-        target="_blank"
-        href={personalData.resumeLink}>
-        <Typography sx={styles.btnTitle}>Download resume</Typography>
+      <Box sx={{display: 'flex', justifyContent: 'center', my: 1}}>
+        <Link href={personalData.github} target="_blank">
+          <GitHubIcon sx={{mx: 1, color: 'secondary.main', fontSize: '35px'}} />
+        </Link>
 
-        <ArticleIcon sx={styles.btnIcon} />
+        <Link href={personalData.linkedin} target="_blank">
+          <LinkedInIcon
+            sx={{mx: 1, color: 'secondary.main', fontSize: '40px'}}
+          />
+        </Link>
+
+        <Link href={personalData.fiverr} target="_blank">
+          <Avatar
+            alt="fiver_logo"
+            src={fiverLogo}
+            sx={{mx: 1, width: '40px', height: '40px'}}
+          />
+        </Link>
+      </Box>
+
+      {/* Nav to projects */}
+      <Button
+        variant="outlined"
+        color="secondary"
+        onClick={() => scrollToSection('Projects')}
+        sx={{
+          textAlign: 'center',
+          borderRadius: '10px',
+          width: 'fit-content',
+          borderColor: 'secondary.main',
+          position: 'relative',
+          overflow: 'hidden',
+          '&:hover': {
+            bgcolor: 'secondary.main',
+            color: 'primary.main',
+          },
+        }}>
+        <Typography
+          sx={{
+            textTransform: 'none',
+            fontSize: {xs: '20px', lg: '20px', xl: '32px'},
+            px: 1,
+          }}>
+          Go to my projects
+        </Typography>
+        <ShortcutIcon sx={{fontSize: {xs: '30px', xl: '40px'}}} />
       </Button>
     </Box>
   );
@@ -86,10 +131,11 @@ export const About: React.FC = () => {
 
 const styles = {
   aboutBox: {
-    py: 4,
+    py: 0,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
   mainTitle: {color: 'info.main', textAlign: 'center'},
   name: {
@@ -109,28 +155,4 @@ const styles = {
     fontSize: {xs: '18px', xl: '24px'},
   },
   image: {borderRadius: '25px', my: 5},
-  resumeBtn: {
-    alignSelf: 'center',
-    border: '1px solid #FFF',
-    borderColor: 'secondary.main',
-    borderRadius: '10px',
-    px: 3,
-    width: 'fit-content',
-    animation: 'pulse 2s infinite',
-    position: 'relative',
-    overflow: 'hidden',
-    color: 'secondary.main',
-    '&:hover': {
-      bgcolor: 'secondary.main',
-      color: 'primary.main',
-    },
-  },
-  btnTitle: {
-    textTransform: 'none',
-    fontSize: {xs: '20px', xl: '24px'},
-  },
-  btnIcon: {
-    fontSize: {xs: '40px', xl: '50px'},
-    ml: 1,
-  },
 };

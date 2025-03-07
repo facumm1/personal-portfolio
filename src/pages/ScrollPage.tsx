@@ -1,12 +1,10 @@
 import React from 'react';
 import {Box} from '@mui/material';
 
-import {Services} from '../components/Services';
 import {Footer} from '../components/Footer';
 
 import {AboutPage} from './AboutPage';
 import {ProjectsPage} from './ProjectsPage';
-import {ContactPage} from './ContactPage';
 import {SectionRefs} from './HomePage';
 
 type Props = {
@@ -22,13 +20,9 @@ export const ScrollPage: React.FC<Props> = ({sections, scrollToSection}) => {
         width: {xs: '100%', lg: '50%'},
         overflowY: 'auto',
       }}>
-      <Services ref={sections['Services']} scrollToSection={scrollToSection} />
-
-      <AboutPage ref={sections['About me']} />
+      <AboutPage ref={sections['About me']} scrollToSection={scrollToSection} />
 
       <ProjectsPage ref={sections['Projects']} />
-
-      {/* <ContactPage ref={sections['Get in touch']} /> */}
 
       <Footer />
     </Box>

@@ -1,8 +1,11 @@
 import React from 'react';
-import {Box, Typography} from '@mui/material';
+import {Box, Button, Typography} from '@mui/material';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 import {experiences} from '../utils/experiences';
+import ArticleIcon from '@mui/icons-material/Article';
+
+import {personalData} from '../utils/data';
 
 const lightGreen = '#59D9C120';
 const lightGray = '#E2E8F080';
@@ -19,7 +22,11 @@ export const Experience: React.FC = () => {
         <Box
           key={exp.jobName}
           sx={styles.expCard}
-          onClick={() => window.open(exp.website, '_blank')}>
+          onClick={() => {
+            if (exp.website) {
+              window.open(exp.website, '_blank');
+            }
+          }}>
           <Typography
             sx={{color: lightGray, fontSize: {xs: '14px', xl: '20px'}}}>
             {exp.datePeriod}
@@ -35,17 +42,24 @@ export const Experience: React.FC = () => {
               {exp.jobName}
             </Typography>
 
-            <ArrowOutwardIcon
-              className="expCardTitle"
-              sx={{color: 'info.main'}}
-            />
+            {exp.website && (
+              <ArrowOutwardIcon
+                className="expCardTitle"
+                sx={{color: 'info.main'}}
+              />
+            )}
           </Box>
 
           <Typography sx={styles.expCardSubTitle} className="expCardTitle">
             {exp.role}
           </Typography>
 
-          <Typography sx={{color: 'info.main', fontSize: {xs: '18px', xl: '22px'}, my: 2}}>
+          <Typography
+            sx={{
+              color: 'info.main',
+              fontSize: {xs: '18px', xl: '22px'},
+              my: 2,
+            }}>
             {exp.description}
           </Typography>
 
@@ -62,6 +76,16 @@ export const Experience: React.FC = () => {
           </Box>
         </Box>
       ))}
+
+      <Button
+        variant="text"
+        sx={styles.resumeBtn}
+        target="_blank"
+        href={personalData.resumeLink}>
+        <Typography sx={styles.btnTitle}>Download resume</Typography>
+
+        <ArticleIcon sx={styles.btnIcon} />
+      </Button>
     </Box>
   );
 };
@@ -107,5 +131,30 @@ const styles = {
     mx: 0.5,
     px: 2,
     py: 1,
+  },
+  resumeBtn: {
+    alignSelf: 'center',
+    border: '1px solid #FFF',
+    borderColor: 'secondary.main',
+    borderRadius: '10px',
+    mt: 5,
+    px: 3,
+    width: 'fit-content',
+    animation: 'pulse 2s infinite',
+    position: 'relative',
+    overflow: 'hidden',
+    color: 'secondary.main',
+    '&:hover': {
+      bgcolor: 'secondary.main',
+      color: 'primary.main',
+    },
+  },
+  btnTitle: {
+    textTransform: 'none',
+    fontSize: {xs: '20px', xl: '24px'},
+  },
+  btnIcon: {
+    fontSize: {xs: '40px', xl: '50px'},
+    ml: 1,
   },
 };

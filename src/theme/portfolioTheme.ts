@@ -4,7 +4,7 @@ import {red} from '@mui/material/colors';
 export const portfolioTheme = createTheme({
   palette: {
     primary: {
-      main: '#141c2e', // Blue #122140 # 0F182A
+      main: '#141c2e', // Blue #141c2e #122140 # 0F182A 
     },
     secondary: {
       main: '#59D9C1', // Green

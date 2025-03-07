@@ -7,7 +7,6 @@ import {useTheme} from '@emotion/react';
 
 import {Header} from '../components/Header';
 import {Titles} from '../components/Titles';
-import {Services} from '../components/Services';
 
 import {ScrollPage} from './ScrollPage';
 
@@ -50,12 +49,7 @@ export const HomePage = React.forwardRef<HTMLDivElement, Props>(
 
           {/* LAPTOP/DESKTOP */}
           {/* ScrollPage is rendered in laptop/desktop view only. */}
-          {!isLaptop ? (
-            <Services
-              ref={sections['Services']}
-              scrollToSection={scrollToSection}
-            />
-          ) : (
+          {isLaptop && (
             <ScrollPage sections={sections} scrollToSection={scrollToSection} />
           )}
         </Box>

@@ -1,15 +1,37 @@
-import React from 'react';
-import {Box, Divider, Typography, useMediaQuery} from '@mui/material';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import React, {useCallback, useState} from 'react';
+import {Box, Divider, Typography} from '@mui/material';
 
-import {projects} from '../utils/projects';
-import {useTheme} from '@emotion/react';
+import {CodeProject, projects} from '../utils/projects';
+import {GeneralProject} from '../components/GeneralProject';
+import {ProjectModal} from '../components/Modal';
+import {useToggle} from '../hooks';
 
 const lightGreen = '#59D9C120';
 
+const initialDetails: CodeProject[] = [
+  {
+    title: '',
+    description: '',
+    github: '',
+    preview: '',
+    thumbnail: '',
+  },
+];
+
 export const ProjectsPage = React.forwardRef<HTMLDivElement>((_, ref) => {
-  const theme = useTheme();
-  const isLaptop = useMediaQuery(theme.breakpoints.up('lg'));
+  const {t: isModalOpened, s: toggleModal} = useToggle();
+  const [projectDetails, setProjectDetails] =
+    useState<CodeProject[]>(initialDetails);
+
+  const handleModal = (details: CodeProject[] = initialDetails) => {
+    if (isModalOpened) {
+      toggleModal(false);
+      return;
+    }
+
+    setProjectDetails(details);
+    toggleModal(true);
+  };
 
   return (
     <Box ref={ref}>
@@ -26,70 +48,18 @@ export const ProjectsPage = React.forwardRef<HTMLDivElement>((_, ref) => {
         </Typography>
 
         {projects.map(project => (
-          <Box
-            sx={styles.card}
+          <GeneralProject
             key={project.title}
-            onClick={() => window.open(project.link)}>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
-              <Typography
-                sx={{
-                  color: 'info.main',
-                  fontSize: {xs: '22px', xl: '30px'},
-                  mb: 1,
-                }}
-                className="cardTitle">
-                {project.title}
-              </Typography>
-
-              <ArrowOutwardIcon
-                className="cardTitle"
-                sx={{color: 'info.main', mb: 1}}
-              />
-            </Box>
-
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: {xs: 'column', lg: 'row'},
-                alignItems: 'center',
-              }}>
-              <img
-                src={project.thumbnail}
-                alt="thumbnail"
-                style={{
-                  borderRadius: '5px',
-                  margin: '20px 0',
-                  width: isLaptop ? '25%' : '100%',
-                  height: '35%',
-                  marginRight: '15px',
-                  objectFit: 'cover',
-                }}
-              />
-
-              <Typography
-                sx={{color: 'info.main', fontSize: {xs: '18px', xl: '22px'}}}>
-                {project.description}
-              </Typography>
-            </Box>
-
-            <Box sx={{mt: 1}}>
-              <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-                {project.skills.map((skill, index) => (
-                  <Typography
-                    key={skill}
-                    sx={{...styles.skill, my: index === 1 ? 1 : 'auto'}}>
-                    {skill}
-                  </Typography>
-                ))}
-              </Box>
-            </Box>
-          </Box>
+            project={project}
+            handleModal={handleModal}
+          />
         ))}
+
+        <ProjectModal
+          details={projectDetails}
+          isModalOpened={isModalOpened}
+          handleModal={handleModal}
+        />
       </Box>
     </Box>
   );

@@ -22,6 +22,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import {useTheme} from '@emotion/react';
 
 import fiverLogo from '../assets/fiverr_blue.svg';
+import { personalData } from '../utils/data';
 
 type Props = {
   toggleMenu: boolean;
@@ -59,7 +60,7 @@ export const Menu: React.FC<Props> = ({
 
           {/* Buttons */}
           <List sx={{my: 4}}>
-            {['Home', 'About me', 'Projects'].map(text => {
+            {['About me', 'Projects'].map(text => {
               const isHomeSection = text === 'Home';
               const responsiveHome = !isLaptop ? 'Home' : 'Services';
 
@@ -127,13 +128,6 @@ const SectionButton = ({
 };
 
 const Contact = () => {
-  const data = {
-    github: 'https://github.com/facumm1',
-    linkedin: 'https://www.linkedin.com/in/facundo-mamani31',
-    fiverr: 'https://es.fiverr.com/facumm1',
-    email: 'facundomamani120@gmail.com',
-  };
-
   return (
     <>
       <Box sx={{my: 4}}>
@@ -148,7 +142,7 @@ const Contact = () => {
           EMAIL
         </Typography>
         <Typography sx={{color: 'primary.main', fontSize: '18px'}}>
-          {data.email}
+          {personalData.email}
         </Typography>
       </Box>
 
@@ -161,15 +155,15 @@ const Contact = () => {
           justifyContent: 'flex-start',
           my: 3,
         }}>
-        <Link href={data.github} target="_blank">
+        <Link href={personalData.github} target="_blank">
           <GitHubIcon sx={{mx: 1, color: 'primary.main', fontSize: '35px'}} />
         </Link>
 
-        <Link href={data.linkedin} target="_blank">
+        <Link href={personalData.linkedin} target="_blank">
           <LinkedInIcon sx={{mx: 1, color: 'primary.main', fontSize: '40px'}} />
         </Link>
 
-        <Link href={data.fiverr} target="_blank">
+        <Link href={personalData.fiverr} target="_blank">
           <Avatar
             alt="fiver_logo"
             src={fiverLogo}

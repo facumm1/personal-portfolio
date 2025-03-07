@@ -4,7 +4,7 @@ import {useRef} from 'react';
 import {ToastContainer} from 'react-toastify';
 import {Container, useMediaQuery} from '@mui/material';
 
-import {AboutPage, HomePage, ProjectsPage, ContactPage} from './pages';
+import {AboutPage, HomePage, ProjectsPage} from './pages';
 import {Menu} from './components/Menu';
 import {Footer} from './components/Footer';
 
@@ -53,6 +53,7 @@ function PortfolioApp() {
           scrollToSection={scrollToSection}
         />
 
+        {/* TODO fix types here */}
         <HomePage
           ref={sections['Home']}
           sections={sections}
@@ -64,11 +65,12 @@ function PortfolioApp() {
         {/* These components are rendered in mobile view only. */}
         {!isLaptop && (
           <>
-            <AboutPage ref={sections['About me']} />
+            <AboutPage
+              ref={sections['About me']}
+              scrollToSection={scrollToSection}
+            />
 
             <ProjectsPage ref={sections['Projects']} />
-
-            {/* <ContactPage ref={sections['Get in touch']} /> */}
 
             <Footer />
           </>
